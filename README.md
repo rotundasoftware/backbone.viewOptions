@@ -38,7 +38,7 @@ myButtonView = new ButtonView( { "label" : "OK" } );
 WidgetView = BaseView.extend( {
 	options : [
 		"type!", // Use a trailing explanation mark to indicate an option is required.
-		{ name : "label", defaultValue : "OK" } // Use this object syntax to give an option a default value.
+		{ name : "label", defaultValue : "OK" } // Use this syntax to give an option a default value.
 	]
 
 	render : function() {
