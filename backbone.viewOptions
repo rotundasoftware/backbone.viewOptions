@@ -4,95 +4,31 @@
  * Distributed under MIT license
  * http://github.com/rotundasoftware/backbone.viewOptions
 */
+
 ( function( Backbone ) {
 	Backbone.ViewOptions = {};
 
-	// Call Backbone.ViewOptions.attach from a view's constructor or initialize method to facilitate 
-	// attaching specific options from the view constructor's "options" argument to the view itself.
-	// 
-	// Arguments are as follows:
-	//   1) `view` is the view object
-	//   2) `options` is the options hash passed into the view's constructor / initialize method.
-	//   3) `declaredOptionsProperty` may be supplied to specify the name of the declarative property
-	//       on the view that is used to enumerate the options from the `options` hash that should be
-	//       attached to the view itself. The default value is "options".
-	//
-    // The declarative "options" array should be supplied on the view object itself (just like, for
-    // example, the backbone "events" property). Each element in the array must be a string or an object.
-	//
-	//   A string element simply represents the name of an option that should be attached to the view. The 
-	//   name may optionally be followed by an explanation mark, which indicates that the option is 
-	//   "required". If a required option is not supplied, an exception will be thrown.
-	//
-	//   An object element in the options array is used to declare an option with a default value. Each    
-	//   object element should have two properties, "name" and "defaultValue". If the option with the 
-	//   given name is not supplied, the supplied default value is attached to the view.
-	//
-	// (Note: You may also supply a function that returns an array for the "options" property, instead of
-	// a static array, similar to how functions may be supplied for the backbone "events" property.)
-	//
-	// The Backbone.ViewOptions.attach method returns an array of the names of the options that are 
-	// supplied in the declarative "options" hash, in case you need an enumeration of the properties
-	// on the view object that correspond to view options.
-	//
-	// Example usage:
-	//
-	// BaseView = Backbone.View.extend( {
-	//    // call Backbone.ViewOptions.attach in our base view constructor so that
-	//    // options are automatically attached in all our derived view classes.
-	//    constructor : function( options ) {
-	//        Backbone.ViewOptions.attach( this, options );
-	//        return Backbone.View.prototype.constructor.apply( this, arguments );
-	//    }
-	// } );
-    //
-    // ButtonView = BaseView.extend( {
-    //    options : [ "label" ]
-    //
-    //    initialize : function() {
-    //        // the declared options are now available on the view object itself
-    //        console.log( this.label );
-    //    }
-    // } );
-    //
-    // // outputs "OK" to the console
-    // myButtonView = new ButtonView( { "label" : "OK" } );
-	//
-	// WidgetView = BaseView.extend( {
-    //    options : [ "type!", { name : "label", defaultValue : "OK" } ]
-    //
-    //    render : function() {
-    //        console.log( this.label );
-    //    }
-    // } );
-    //
-    // // outputs "OK" to the console (label option defaults to "OK")
-    // myWidgetView = new WidgetView( { "type" : "button" } );
-    //
-    // // throws an exception because required option "type" is missing
-    // myWidgetView = new WidgetView( { "label" : "Cancel" } );
-
-	Backbone.ViewOptions.attach = function( view, options, declaredOptionsProperty ) {
+	Backbone.ViewOptions.attach = function( view, options, optionDeclarationsProperty ) {
 		var optionNames = [];
 
-		if( _.isUndefined( declaredOptionsProperty ) ) declaredOptionsProperty = "options";
-		var declaredOptions = _.result( view, declaredOptionsProperty );
+		if( _.isUndefined( optionDeclarationsProperty ) ) optionDeclarationsProperty = "options";
+		optionDeclarations = _.result( view, optionDeclarationsProperty );
 
-		if( ! _.isUndefined( declaredOptions ) ) {
-			if( ! _.isArray( declaredOptions ) ) throw new Error( "Option descriptors must be an array." );
+		if( ! _.isUndefined( optionDeclarations ) ) {
+			if( ! _.isArray( optionDeclarations ) ) throw new Error( "Option descriptors must be an array." );
 
-			_.each( declaredOptions, function( thisDeclaredOption ) {
+			_.each( optionDeclarations, function( thisOptionDeclaration ) {
 				var thisOptionName, assertExists, thisOptionDefaultValue;
 
 				assertExists = false;
 				thisOptionDefaultValue = undefined;
 
-				if( _.isString( thisDeclaredOption ) )
-					thisOptionName = thisDeclaredOption;
-				else if( _.isObject( thisDeclaredOption ) ) {
-					if( ! thisDeclaredOption.name ) throw new Error( "Missing option name in option object" );
-					thisOptionName = thisDeclaredOption.name;
-					thisOptionDefaultValue = _.clone( thisDeclaredOption.defaultValue );
+				if( _.isString( thisOptionDeclaration ) )
+					thisOptionName = thisOptionDeclaration;
+				else if( _.isObject( thisOptionDeclaration ) ) {
+					if( ! thisOptionDeclaration.name ) throw new Error( "Missing option name in option object" );
+					thisOptionName = thisOptionDeclaration.name;
+					thisOptionDefaultValue = _.clone( thisOptionDeclaration.defaultValue );
 				}
 				else throw new Error( "Each element in the option descriptors array must be either a string or an object." );
 
