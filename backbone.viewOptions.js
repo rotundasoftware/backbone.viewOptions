@@ -63,5 +63,6 @@
 			
 			return namesOfOptionsThatWereSet;
 		};
+		
 	};
 } )( Backbone, _ );
