@@ -54,7 +54,7 @@ myWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 ## Details
 
-`Backbone.ViewOptions.attach()`, this simple plugin's only function, attaches options to a view, as specified by a declarative array of valid options (and associated information) that must be supplied on the view class. Use it in a view's constructor or initialize method like so:
+`Backbone.ViewOptions.attach()`, this simple plugin's only function, attaches elements of an options hash to a view, as specified by a declarative array of valid options (and associated information) that must be supplied on the view class. Use it in a view's constructor or initialize method like so:
 
 ```javascript
 Backbone.ViewOptions.attach( this, options );
@@ -64,12 +64,12 @@ The function takes three arguments:
 
 1. A view object to which the options should be attached.
 2. The initialization options hash (exaclty as passed into the view's constructor / initialize method).
-3. An optional third argument (defaults to "options") that may be used to specify the name of the "option declarations" array.
+3. An optional third argument (defaults to `"options"`) that may be used to specify the name of the "option declarations" array.
 
 The "option declarations" array should be supplied on the view class (just like, for example, the built-in backbone `events` property). Each element in the array must be a string or an object.
 * A string element simply represents the name of an option that should be attached to the view. The name may optionally be followed by an explanation mark, which indicates a "required" option. If a required option is not supplied, an exception will be raised.
-* An object element in the "option declarations" array may be used to give an option a default value. Each object element should have two properties, "name" and "defaultValue".
+* An object element in the "option declarations" array may be used to give an option a default value. Each object element should have two properties, "name" and "defaultValue", e.g. `{ name : "label", defaultValue : "OK" }`
 
-(Note: You may also supply a function that returns an array for the "option declarations" property, similar to how a function that returns a hash may be supplied instead of a hash for the built-in backbone "events" property.)
+(Note: You may also supply a function that returns an array for the "option declarations" property, similar to how a function that returns a hash may be supplied instead of a hash for the built-in backbone `events` property.)
 
 The `Backbone.ViewOptions.attach()` method returns an array of the names of the options that are supplied in the "option declarations" array, in case you need an enumeration of the properties on the view object that correspond to initialization options.
