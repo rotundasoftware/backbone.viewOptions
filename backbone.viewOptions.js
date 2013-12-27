@@ -1,6 +1,6 @@
 /*
  * Backbone.ViewOptions, v0.1
- * Copyright (c)2014 Rotunda Software, LLC.
+ * Copyright (c)2013 Rotunda Software, LLC.
  * Distributed under MIT license
  * http://github.com/rotundasoftware/backbone.viewOptions
 */
@@ -9,12 +9,12 @@
 	Backbone.ViewOptions = {};
 
 	Backbone.ViewOptions.add = function( view, initializeOptions ) {
-		view.setOptions = function( options, optionDeclarationsPropertyName ) {
+
+		view.setOptions = function( options, optionDeclarations ) {
 			var _this = this;
 			var namesOfOptionsThatWereSet = [];
 
-			if( _.isUndefined( optionDeclarationsPropertyName ) ) optionDeclarationsPropertyName = "options";
-			var optionDeclarations = _.result( _this, optionDeclarationsPropertyName );
+			if( _.isUndefined( optionDeclarations ) ) optionDeclarations = _.result( _this, "options" );
 
 			if( ! _.isUndefined( optionDeclarations ) ) {
 				if( ! _.isArray( optionDeclarations ) ) throw new Error( "Option declarations must be an array." );
@@ -65,5 +65,7 @@
 			
 			return namesOfOptionsThatWereSet;
 		};
+
+		return view.setOptions( initializeOptions );
 	};
 } )( Backbone, _ );
