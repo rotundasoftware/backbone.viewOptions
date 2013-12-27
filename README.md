@@ -59,7 +59,7 @@ myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 #### Backbone.ViewOptions.add( view, optionHash )
 
-Adds the view options functionality to a view object. Use it in a view's (or your base view's) `constructor` or `initialize` method:
+Adds the view options functionality to a view object. Use it in a `constructor` or `initialize` method:
 
 ```javascript
 initialize : function( options ) {
