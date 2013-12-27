@@ -36,15 +36,14 @@
 
 					if( thisOptionName[ thisOptionName.length - 1 ] === "!" ) {
 						thisOptionName = thisOptionName.slice( 0, thisOptionName.length - 1 );
-						assertExists = true;
+						
+						// note we do not throw an error if a required option is not supplied, but it is found on the   
+						// object itself (due to a prior call of Backbone.ViewOptions.attach, most likely)
+						if( ! options || ! _.contains( _.keys( options ), thisOptionName ) &&
+							_.isUndefined( _this[ thisOptionName ] ) )
+							throw new Error( "Required option \"" + thisOptionName + "\" not supplied." );
 					}
 					
-					// note we do not throw an error if a required option is not supplied, but it is found on the   
-					// object itself (due to a prior call of Backbone.ViewOptions.attach, most likely)
-					if( assertExists &&
-						( ! options || ! _.contains( _.keys( options ), thisOptionName ) &&
-						_.isUndefined( _this[ thisOptionName ] ) ) )
-						throw new Error( "Required option \"" + thisOptionName + "\" not supplied." );
 
 					// attach the supplied option, or the appropriate default value, to the view object
 					if( options && thisOptionName in options ) {
