@@ -72,7 +72,7 @@ initialize : function( options ) {
 
 #### `view.setOptions( optionHash )`
 
-Once `Backbone.ViewOptions.add()` has been called on a view, the `setOptions` method will be available on that view. This method may be used to set the value of the view's properties white-listed in the view's `options` property (see below). The method returns an array of the names of the options that were set on the view object, just in case you need 'em later.
+Once `Backbone.ViewOptions.add()` has been called on a view, the `setOptions` method will be available on that view. This method may be used to set the value of the view's properties that are white-listed in the view's `options` array (see below). The method returns an array of the names of the options that were set on the view object, just in case you need 'em later.
 
 #### `view.options` property
 
