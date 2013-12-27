@@ -1,22 +1,23 @@
 # Backbone.ViewOptions
 
-A mini [Backbone.js](http://backbonejs.org/) plugin for declaring view options. Supports required options and default values.
+A mini [Backbone.js](http://backbonejs.org/) plugin to take care of your view options. Supports required options and default values.
 
 ## Benefits
 
-* Use a simple declarative syntax to attach initialization options directly to your view objects. 
+* Use a simple declarative syntax to attach white-listed initialization options directly to your view objects. 
 * Declare required options as such, so an exception is raised immediately if one is not supplied.
 * Declare default values for particular options.
-* Can be used with any view class, including those in [Marionette](https://github.com/marionettejs/backbone.marionette), [LayoutManager](https://github.com/tbranyen/backbone.layoutmanager), etc.
+* Option values can be changed post-initialization through a public `view.setOptions()` method.
+* Can be used with any view class, including those in [Marionette](https://github.com/marionettejs/backbone.marionette), etc.
 
 ## Usage
 
 ```javascript
-// call Backbone.ViewOptions.attach in our base view constructor so that the
-// Backbone.ViewOptions functionality is available in all our views.
+// Call Backbone.ViewOptions.add() in our base view constructor so
+// that the view options functionality is added to all our views.
 BaseView = Backbone.View.extend( {
 	constructor : function( options ) {
-		Backbone.ViewOptions.attach( this, options );
+		Backbone.ViewOptions.add( this, options ); // adds view options functionality and attaches options
 		return Backbone.View.prototype.constructor.apply( this, arguments );
 	}
 } );
@@ -25,19 +26,19 @@ ButtonView = BaseView.extend( {
 	options : [ "label" ]
 
 	initialize : function() {
-		// the options declared in the "options" property are
+		// The options declared in the "options" property are
 		// automatically attach to the view object itself.
 		console.log( this.label );
 	}
 } );
 
-// outputs "OK" to the console.
+// Outputs "OK" to the console.
 myButtonView = new ButtonView( { "label" : "OK" } );
 
 WidgetView = BaseView.extend( {
 	options : [
-		"type!", // use a trailing explanation mark to indicate an option is required.
-		{ name : "label", defaultValue : "OK" } // use this object syntax to give an option a default value.
+		"type!", // Use a trailing explanation mark to indicate an option is required.
+		{ name : "label", defaultValue : "OK" } // Use this object syntax to give an option a default value.
 	]
 
 	render : function() {
@@ -45,31 +46,41 @@ WidgetView = BaseView.extend( {
 	}
 } );
 
-// outputs "OK" to the console (because the "label" option defaults to "OK").
+// Outputs "OK" to the console, because the "label" option defaults to "OK".
 myWidgetView = new WidgetView( { "type" : "button" } ).render();
+myWidgetView.setOptions( { "label" : "Save" } );
+myWidgetView.render(); // Outputs "Save" to the console.
 
-// throws an exception (because the required "type" option is missing).
-myWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
+// Throws an exception, because the required "type" option is missing.
+myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 ```
 
-## Details
+## Methods
 
-`Backbone.ViewOptions.attach()`, this simple plugin's only function, attaches elements of an options hash to a view, as specified by a declarative array of valid options (and associated information) that must be supplied on the view class. Use it in a view's constructor or initialize method like so:
+#### Backbone.ViewOptions.add( view, optionHash )
+
+Adds the view options functionality to a view object. Use it in a view's (or your base view's) `constructor` or `initialize` method:
 
 ```javascript
-Backbone.ViewOptions.attach( this, options );
+initialize : function( options ) {
+	Backbone.ViewOptions.add( this, options );
+	...
+}
 ```
 
-The function takes three arguments:
+The two arguments are:
 
-1. A view object to which the options should be attached.
-2. The initialization options hash, exaclty as passed into the view's `constructor` or `initialize` method.
-3. An optional third argument (defaults to `"options"`) that may be used to specify the name of the "option declarations" array.
+1. A view object to which the the view options functionality should be added.
+2. The initialization options hash, as passed into the view's `constructor` or `initialize` method.
 
-The "option declarations" array should be supplied on the view class (just like, for example, the built-in backbone `events` property). Each element in the array must be a string or an object.
-* A string element simply represents the name of an option that should be attached to the view. The name may optionally be followed by an explanation mark, which indicates a "required" option. If a required option is not supplied, an exception will be raised.
-* An object element may be used to give an option a default value. Each object element should have two properties, "name" and "defaultValue", e.g. `{ name : "label", defaultValue : "OK" }`
+An "option declarations" array should be supplied as the `options` property of the view class (just like, for example, the built-in backbone `events` property). Each element in the array must be a string or an object.
+* A string element simply represents the name of an option that should be attached to the view when it is supplied in the `optionsHash`. The name may optionally be followed by an explanation mark, which indicates a "required" option. If a required option is not supplied, an exception will be raised.
+* An object element may be used to give an option a default value. Each object element should have two properties, `name` and `defaultValue`, e.g. `{ name : "label", defaultValue : "OK" }`
 
-(Note: You may also supply a function that returns an array for the "option declarations" property, similar to how a function that returns a hash may be supplied instead of a hash for the built-in backbone `events` property.)
+(Note: You may also supply a function that returns an array as the `options` property of the view class, similar to how you may supply a function that returns a hash for the built-in backbone `events` property.)
 
-The `Backbone.ViewOptions.attach()` method returns an array of the names of the options that are supplied in the "option declarations" array, in case you need an enumeration of the properties on the view object that correspond to initialization options.
+The `Backbone.ViewOptions.add()` method returns an array of the names of the options that were set on the view object, just in case you need 'em.
+
+#### view.setOptions( optionHash )
+
+Once `Backbone.ViewOptions.add()` has been called on a view, the `setOptions` method will be available on that view. This method may be used to change the value of any of the view's options after the view has been initialized. Only white-listed options in the view's `options` property may be set through `view.setOptions()`. It returns an array of the names of the options that were set on the view object.
