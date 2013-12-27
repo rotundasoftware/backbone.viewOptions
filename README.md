@@ -17,7 +17,9 @@ A mini [Backbone.js](http://backbonejs.org/) plugin to take care of your view op
 // that the view options functionality is added to all our views.
 BaseView = Backbone.View.extend( {
 	constructor : function( options ) {
-		Backbone.ViewOptions.add( this, options ); // initializes functionality and attaches options
+		Backbone.ViewOptions.add( this ); // initializes view options functionality
+		this.setOptions( options ); // set the view's options from initialization options
+		
 		return Backbone.View.prototype.constructor.apply( this, arguments );
 	}
 } );
@@ -63,15 +65,14 @@ Adds the view options functionality to a view object. Use it in a `constructor` 
 
 ```javascript
 initialize : function( options ) {
-	Backbone.ViewOptions.add( this, options );
+	Backbone.ViewOptions.add( this );
 	...
 }
 ```
 
-The two arguments are:
+#### view.setOptions( optionHash )
 
-1. A view object to which the the view options functionality should be added.
-2. The initialization options hash, as passed into the view's `constructor` or `initialize` method.
+Once `Backbone.ViewOptions.add()` has been called on a view, the `setOptions` method will be available on that view. This method may be used to set the value of the view's options white-listed in the view's `options` property (see below). The method returns an array of the names of the options that were set on the view object, just in case you need 'em.
 
 #### `options` property
 
@@ -80,9 +81,3 @@ An "option declarations" array should be supplied as the `options` property of t
 * An object element may be used to give an option a default value. Each object element should have two properties, `name` and `defaultValue`, e.g. `{ name : "label", defaultValue : "OK" }`
 
 (Note: You may also supply a function that returns an array as the `options` property of the view class, similar to how you may supply a function that returns a hash for the built-in backbone `events` property.)
-
-The `Backbone.ViewOptions.add()` method returns an array of the names of the options that were set on the view object, just in case you need 'em.
-
-#### view.setOptions( optionHash )
-
-Once `Backbone.ViewOptions.add()` has been called on a view, the `setOptions` method will be available on that view. This method may be used to change the value of any of the view's options after the view has been initialized. Only white-listed options in the view's `options` property may be set through `view.setOptions()`. It returns an array of the names of the options that were set on the view object.

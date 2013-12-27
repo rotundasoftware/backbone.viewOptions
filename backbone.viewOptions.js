@@ -9,7 +9,6 @@
 	Backbone.ViewOptions = {};
 
 	Backbone.ViewOptions.add = function( view, initializeOptions ) {
-
 		view.setOptions = function( options, optionDeclarationsPropertyName ) {
 			var _this = this;
 			var namesOfOptionsThatWereSet = [];
@@ -66,7 +65,5 @@
 			
 			return namesOfOptionsThatWereSet;
 		};
-
-		return view.setOptions( initializeOptions );
 	};
 } )( Backbone, _ );
