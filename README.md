@@ -1,13 +1,13 @@
 # Backbone.ViewOptions
 
-A minimalist [Backbone.js](http://backbonejs.org/) plugin for attaching initialization options to your views. Supports required options and default values.
+A mini [Backbone.js](http://backbonejs.org/) plugin for attaching initialization options to views. Supports required options and default values.
 
 ## Benefits
 
-* Use a clear declarative syntax to attach particular initialization options directly to your view objects. 
-* Declare required options as such, so that you are notified with an exception immediately if a required option is not supplied.
+* Use a clear and consistent declarative syntax to attach particular initialization options directly to your view objects. 
+* Declare required options as such, so an exception is raised immediately if one is not supplied.
 * Declare default values for particular options.
-* Can be used with any view class, including the base views in [Marionette](https://github.com/marionettejs/backbone.marionette), [LayoutManager](https://github.com/tbranyen/backbone.layoutmanager), etc.
+* Can be used with any view class, including those in [Marionette](https://github.com/marionettejs/backbone.marionette), [LayoutManager](https://github.com/tbranyen/backbone.layoutmanager), etc.
 
 ## Usage
 
