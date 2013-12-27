@@ -27,7 +27,7 @@ ButtonView = BaseView.extend( {
 	options : [ "label" ]
 
 	initialize : function() {
-		// Now the options declared in the view's "options" 
+		// Now the options white-listed in the view's "options" 
 		// property are automatically attached to the view object.
 		console.log( this.label );
 	}
