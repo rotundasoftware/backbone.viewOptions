@@ -1,6 +1,6 @@
 /*
  * Backbone.ViewOptions, v0.1
- * Copyright (c)2013 Rotunda Software, LLC.
+ * Copyright (c)2014 Rotunda Software, LLC.
  * Distributed under MIT license
  * http://github.com/rotundasoftware/backbone.viewOptions
 */
