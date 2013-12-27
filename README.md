@@ -1,6 +1,6 @@
 # Backbone.ViewOptions
 
-A minimalist plugin for attaching initialization options to your views in your [Backbone.js](http://backbonejs.org/) applications. Supports required options and default values.
+A minimalist [Backbone.js](http://backbonejs.org/) plugin for attaching initialization options to your views. Supports required options and default values.
 
 ## Benefits
 
