@@ -4,7 +4,7 @@ A mini [Backbone.js](http://backbonejs.org/) plugin for handling view initializa
 
 ## Benefits
 
-* Use a clear and consistent declarative syntax to attach particular initialization options directly to your view objects. 
+* Use a simple declarative syntax to attach initialization options directly to your view objects. 
 * Declare required options as such, so an exception is raised immediately if one is not supplied.
 * Declare default values for particular options.
 * Can be used with any view class, including those in [Marionette](https://github.com/marionettejs/backbone.marionette), [LayoutManager](https://github.com/tbranyen/backbone.layoutmanager), etc.
