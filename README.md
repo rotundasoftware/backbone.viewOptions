@@ -16,11 +16,9 @@ A mini [Backbone.js](http://backbonejs.org/) plugin to take care of your view op
 // Call Backbone.ViewOptions.add() and view.setOptions() in our base view constructor so
 // that the view options functionality is added to all our views and options are attached.
 BaseView = Backbone.View.extend( {
-	constructor : function( options ) {
+	initialize : function( options ) {
 		Backbone.ViewOptions.add( this ); // initializes view options functionality
 		this.setOptions( options ); // set the view's options from initialization options
-
-		return Backbone.View.prototype.constructor.apply( this, arguments );
 	}
 } );
 
