@@ -29,6 +29,7 @@ ButtonView = BaseView.extend( {
 		// Now the options declared in the view's "options" 
 		// property are automatically attached to the view object.
 		console.log( this.label );
+		...
 	}
 } );
 
