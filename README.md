@@ -7,7 +7,7 @@ A mini [Backbone.js](http://backbonejs.org/) plugin to take care of your view op
 * Use a simple declarative syntax to attach white-listed initialization options directly to your view objects. 
 * Declare required options as such, so an exception is raised immediately if one is not supplied.
 * Declare default values for particular options.
-* Option values can be changed post-initialization through a public `view.setOptions()` method.
+* White-listed option values can be changed post-initialization via `view.setOptions()`.
 * Can be used with any view class, including those in [Marionette](https://github.com/marionettejs/backbone.marionette), etc.
 
 ## Usage
