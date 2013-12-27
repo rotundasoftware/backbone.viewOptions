@@ -19,6 +19,7 @@ BaseView = Backbone.View.extend( {
 	initialize : function( options ) {
 		Backbone.ViewOptions.add( this ); // initializes view options functionality on this view
 		this.setOptions( options ); // set the view's options from initialization options
+		...
 	}
 } );
 
@@ -29,7 +30,6 @@ ButtonView = BaseView.extend( {
 		// Now the options declared in the view's "options" 
 		// property are automatically attached to the view object.
 		console.log( this.label );
-		...
 	}
 } );
 
