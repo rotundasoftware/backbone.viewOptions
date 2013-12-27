@@ -55,7 +55,7 @@ myWidgetView.render(); // Outputs "Save" to the console.
 myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 ```
 
-## Methods
+## Methods & Properties
 
 #### Backbone.ViewOptions.add( view, optionHash )
 
@@ -72,6 +72,8 @@ The two arguments are:
 
 1. A view object to which the the view options functionality should be added.
 2. The initialization options hash, as passed into the view's `constructor` or `initialize` method.
+
+#### `options` property
 
 An "option declarations" array should be supplied as the `options` property of the view class (just like, for example, the built-in backbone `events` property). Each element in the array must be a string or an object.
 * A string element simply represents the name of an option that should be attached to the view when it is supplied in the `optionsHash`. The name may optionally be followed by an explanation mark, which indicates a "required" option. If a required option is not supplied, an exception will be raised.
