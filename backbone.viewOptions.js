@@ -33,7 +33,9 @@
 
 					// attach the supplied value of this option, or the appropriate default value, to the view object
 					if( options && thisOptionName in options ) {
+						// if this option already exists on the view, make a note that we will be changing it
 						if( ! _.isUndefined( _this[ thisOptionName ] ) ) optionsThatWereChanged[ thisOptionName ] = options[ thisOptionName ];
+
 						_this[ thisOptionName ] = options[ thisOptionName ];
 						// note we do NOT delete the option off the options object here so that
 						// multiple views can be passed the same options object without issue.
