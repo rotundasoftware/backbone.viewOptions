@@ -87,6 +87,6 @@ You may alternatively supply a function that _returns_ an array as `view.options
 
 Returns an array containing the names of each of the options declared in `view.options`.
 
-#### `view._onOptionsChanged( changedOptions )` callback
+#### `view.onOptionsChanged( changedOptions )` callback
 
 This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. (Therefore it is generally _not_ called when options are first set during view initialization.) `changedOptions` is a hash of the changed options and their new values.

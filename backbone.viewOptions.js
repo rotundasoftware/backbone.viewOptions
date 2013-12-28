@@ -45,8 +45,8 @@
 				} );
 			}
 			
-			if( _.isFunction( _this._onOptionsChanged ) && _.keys( optionsThatWereChanged ).length > 0 )
-				_this._onOptionsChanged( optionsThatWereChanged );
+			if( _.isFunction( _this.onOptionsChanged ) && _.keys( optionsThatWereChanged ).length > 0 )
+				_this.onOptionsChanged( optionsThatWereChanged );
 		};
 
 		view.getOptionNames = function() {
