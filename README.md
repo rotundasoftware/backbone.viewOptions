@@ -85,7 +85,7 @@ Sets the view's options to the values in `optionHash` as appropriate, given the 
 
 #### `view.getOptionNames()`
 
-Returns an array containing the names of the options declared in `view.options`.
+Returns an array containing all view properties that are options (i.e. the options declared in `view.options`).
 
 #### `view.onOptionsChanged( changedOptions )` callback
 
