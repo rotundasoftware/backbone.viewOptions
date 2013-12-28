@@ -17,8 +17,8 @@ A mini [Backbone.js](http://backbonejs.org/) plugin to easily declare and set vi
 // that the view options functionality is added to all our views and options are attached.
 BaseView = Backbone.View.extend( {
 	initialize : function( options ) {
-		Backbone.ViewOptions.add( this ); // initializes view options functionality on this view
-		this.setOptions( options ); // set the view's options from initialization options
+		Backbone.ViewOptions.add( this );  // initializes view options functionality on this view
+		this.setOptions( options );  // set the view's options from initialization options
 		...
 	}
 } );
@@ -38,8 +38,8 @@ myButtonView = new ButtonView( { "label" : "OK" } );
 
 WidgetView = BaseView.extend( {
 	options : [
-		"type!", // Use a trailing explanation mark to indicate an option is required.
-		{ name : "label", defaultValue : "OK" } // Use this syntax to give an option a default value.
+		"type!",  // Use a trailing explanation mark to indicate an option is required.
+		{ name : "label", defaultValue : "OK" }  // Use this syntax to give an option a default value.
 	]
 
 	render : function() {
@@ -51,7 +51,7 @@ WidgetView = BaseView.extend( {
 myWidgetView = new WidgetView( { "type" : "button" } ).render();
 
 myWidgetView.setOptions( { "label" : "Save" } );
-myWidgetView.render(); // Outputs "Save" to the console.
+myWidgetView.render();  // Outputs "Save" to the console.
 
 // Throws an exception, because the required "type" option is missing.
 myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
@@ -61,12 +61,12 @@ myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 #### `Backbone.ViewOptions.add( view )`
 
-Adds the view options functionality to a view - specifically the `view.setOptions()` and `view.getOptionNames()` methods described below. Generally used in a view's `constructor` or `initialize` method:
+Adds the view options functionality to a view (i.e. the `view.setOptions()` and `view.getOptionNames()` methods described below). Generally used in a view's `constructor` or `initialize` method:
 
 ```javascript
 initialize : function( options ) {
 	Backbone.ViewOptions.add( this );
-	this.setOptions( options );
+	this.setOptions( options );  // now we can call view.setOptions()
 	...
 }
 ```
