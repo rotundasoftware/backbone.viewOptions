@@ -61,7 +61,7 @@ myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 #### `Backbone.ViewOptions.add( view )`
 
-Generally used in a view's `constructor` or `initialize` method, this function adds the view options functionality to a view.
+Generally used in a view's `constructor` or `initialize` method, this function adds the view options functionality to a view:
 
 ```javascript
 initialize : function( options ) {
@@ -73,7 +73,7 @@ initialize : function( options ) {
 
 #### `view.setOptions( optionHash, [ optionDeclarations ] )`
 
-Sets the view's options from the values in `optionHash` as appropriate, given the option declarations in the `view.options` property (see below). If a "required" option is not supplied (and is not already a property of the view), an exception will be raised. The optional second argument may be used to supply alternative option declarations, instead of defaulting to those in `view.options`.
+Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in the `view.options` property (see below). If a "required" option is not supplied (and is not already a property of the view), an exception will be raised. The optional second argument may be used to supply alternative option declarations, instead of defaulting to those in `view.options`.
 
 #### `view.getOptionNames( [ optionDeclarations ] )`
 
@@ -89,4 +89,4 @@ You may alternatively supply a function that _returns_ an array as `view.options
 
 #### `view._onOptionsChanged( changedOptions )` callback
 
-This callback, if it exists, is invoked when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. (Therefore is generally _not_ invoked when `view.setOptions` is called during view initialization.) `changedOptions` is a hash that maps the names of the options that were changed to their new values.
+This method, if it exists, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. (Therefore it is generally _not_ called when options are first set during view initialization.) `changedOptions` is a hash of the changed options and their new values.
