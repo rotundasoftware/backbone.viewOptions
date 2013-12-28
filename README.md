@@ -71,9 +71,9 @@ initialize : function( options ) {
 }
 ```
 
-#### `view.setOptions( optionHash, [ optionDeclarations ] )`
+#### `view.setOptions( optionHash )`
 
-Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in the `view.options` property (see below). If a "required" option is not supplied (and is not already a property of the view), an exception will be raised. The optional second argument may be used to supply alternative option declarations, instead of defaulting to those in `view.options`.
+Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in the `view.options` property (see below). If a "required" option is not supplied (and is not already a property of the view), an exception will be raised.
 
 #### `view.options` property
 
@@ -83,9 +83,9 @@ An "option declarations" array should be supplied as the `options` property of t
 
 You may alternatively supply a function that _returns_ an array as `view.options`, very much like how you may supply a function that returns a hash for the built-in backbone `view.events` property.
 
-#### `view.getOptionNames( [ optionDeclarations ] )`
+#### `view.getOptionNames()`
 
-Returns an array containing the names of each of the options declared in `view.options` (or alternatively in `optionDeclarations`, if it is supplied).
+Returns an array containing the names of each of the options declared in `view.options`.
 
 #### `view._onOptionsChanged( changedOptions )` callback
 

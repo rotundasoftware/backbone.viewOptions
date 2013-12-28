@@ -8,12 +8,12 @@
 ( function( Backbone ) {
 	Backbone.ViewOptions = {};
 
-	Backbone.ViewOptions.add = function( view, initializeOptions ) {
-		view.setOptions = function( options, optionDeclarations ) {
+	Backbone.ViewOptions.add = function( view ) {
+		view.setOptions = function( options ) {
 			var _this = this;
 			var optionsThatWereChanged = {};
 
-			if( _.isUndefined( optionDeclarations ) ) optionDeclarations = _.result( _this, "options" );
+			var optionDeclarations = _.result( this, "options" );
 
 			if( ! _.isUndefined( optionDeclarations ) ) {
 				var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
@@ -49,10 +49,10 @@
 				_this._onOptionsChanged( optionsThatWereChanged );
 		};
 
-		view.getOptionNames = function( optionDeclarations ) {
-			if( _.isUndefined( optionDeclarations ) ) optionDeclarations = _.result( this, "options" );
+		view.getOptionNames = function() {
+			var optionDeclarations = _.result( this, "options" );
 			if( _.isUndefined( optionDeclarations ) ) return [];
-		
+			
 			var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
 			return _.pluck( normalizedOptionDeclarations, "name" );
 		};
