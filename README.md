@@ -38,7 +38,7 @@ myButtonView = new ButtonView( { "label" : "OK" } );
 
 WidgetView = BaseView.extend( {
 	options : [
-		"type!",  // Use a trailing explanation mark to indicate an option is required.
+		"type!",  // Use a trailing explanation mark to indicate that an option is required.
 		{ name : "label", defaultValue : "OK" }  // Use this syntax to give an option a default value.
 	]
 
@@ -61,12 +61,12 @@ myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 #### `Backbone.ViewOptions.add( view )`
 
-Generally used in a view's `constructor` or `initialize` method, this function adds the view options functionality to a view:
+Generally used in your base view's `constructor` or `initialize` method, this function adds the view options functionality to the supplied view:
 
 ```javascript
 initialize : function( options ) {
 	Backbone.ViewOptions.add( this );
-	this.setOptions( options );  // now we can call view.setOptions(), etc.
+	this.setOptions( options );  // now we can (and should) call view.setOptions()
 	...
 }
 ```
@@ -75,10 +75,6 @@ initialize : function( options ) {
 
 Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in the `view.options` property (see below). If a "required" option is not supplied (and is not already a property of the view), an exception will be raised. The optional second argument may be used to supply alternative option declarations, instead of defaulting to those in `view.options`.
 
-#### `view.getOptionNames( [ optionDeclarations ] )`
-
-Returns an array containing the names of each of the options declared in `view.options` (or alternatively in `optionDeclarations`, if it is supplied).
-
 #### `view.options` property
 
 An "option declarations" array should be supplied as the `options` property of the view class. Each element in the array must be a string or an object.
@@ -86,6 +82,10 @@ An "option declarations" array should be supplied as the `options` property of t
 * An object element may be used to give an option a default value. Each object element should have two properties, `name` and `defaultValue`, e.g. `{ name : "label", defaultValue : "OK" }`
 
 You may alternatively supply a function that _returns_ an array as `view.options`, very much like how you may supply a function that returns a hash for the built-in backbone `view.events` property.
+
+#### `view.getOptionNames( [ optionDeclarations ] )`
+
+Returns an array containing the names of each of the options declared in `view.options` (or alternatively in `optionDeclarations`, if it is supplied).
 
 #### `view._onOptionsChanged( changedOptions )` callback
 
