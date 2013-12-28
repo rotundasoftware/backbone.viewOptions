@@ -81,7 +81,7 @@ You may alternatively supply a function that _returns_ an array as `view.options
 
 #### `view.setOptions( optionHash )`
 
-Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in `view.options`. If a "required" option is not supplied (and is not already a property of the view), an exception will be raised.
+Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in `view.options`. If a "required" option is not supplied (and is not already on the view), an exception is raised.
 
 #### `view.onOptionsChanged( changedOptions )` callback
 
