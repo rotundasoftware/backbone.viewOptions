@@ -89,4 +89,4 @@ Returns an array containing all view properties that are options (i.e. the optio
 
 #### `view.onOptionsChanged( changedOptions )` callback
 
-This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. (Therefore it is generally _not_ called when options are first set during view initialization.) `changedOptions` is a hash of the changed options and their new values.
+This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. `changedOptions` is a hash of the changed options and their new values.
