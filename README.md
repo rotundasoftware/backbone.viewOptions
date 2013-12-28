@@ -71,22 +71,23 @@ initialize : function( options ) {
 }
 ```
 
-#### `view.setOptions( optionHash )`
-
-Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in the `view.options` property (see below). If a "required" option is not supplied (and is not already a property of the view), an exception will be raised.
-
 #### `view.options` property
 
 An "option declarations" array should be supplied as the `options` property of the view class. Each element in the array must be a string or an object.
-* A string element simply white-lists the name of an option that should be attached to the view when it is supplied in `view.setOptions()`'s `optionsHash`. The name may optionally be followed by an explanation mark, which indicates a "required" option.
+* A string element simply white-lists the name of an option that should be attached to the view when it is supplied in `view.setOptions()`'s `optionsHash` (see below). The name may optionally be followed by an explanation mark, which indicates a "required" option.
 * An object element may be used to give an option a default value. Each object element should have two properties, `name` and `defaultValue`, e.g. `{ name : "label", defaultValue : "OK" }`
 
 You may alternatively supply a function that _returns_ an array as `view.options`, very much like how you may supply a function that returns a hash for the built-in backbone `view.events` property.
 
-#### `view.getOptionNames()`
+#### `view.setOptions( optionHash )`
 
-Returns an array containing the names of each of the options declared in `view.options`.
+Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in `view.options`. If a "required" option is not supplied (and is not already a property of the view), an exception will be raised.
 
 #### `view.onOptionsChanged( changedOptions )` callback
 
 This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. (Therefore it is generally _not_ called when options are first set during view initialization.) `changedOptions` is a hash of the changed options and their new values.
+
+#### `view.getOptionNames()`
+
+Returns an array containing the names of the options declared in `view.options`.
+
