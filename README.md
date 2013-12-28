@@ -1,4 +1,4 @@
-# Backbone.ViewOptions
+# Backbone.viewOptions
 
 A mini [Backbone.js](http://backbonejs.org/) plugin to declare and set options on views. Supports required options and default values.
 
