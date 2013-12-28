@@ -28,7 +28,7 @@
 						// found on the object itself (due to a prior call of view.setOptions, most likely)
 						if( ! options || ! _.contains( _.keys( options ), thisOptionName ) &&
 							_.isUndefined( _this[ thisOptionName ] ) )
-							throw new Error( "Required option \"" + thisOptionName + "\" not supplied." );
+							throw new Error( "Required option \"" + thisOptionName + "\" was not supplied." );
 					}
 
 					// attach the supplied value of this option, or the appropriate default value, to the view object
