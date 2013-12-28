@@ -47,13 +47,13 @@ WidgetView = BaseView.extend( {
 	}
 } );
 
-// Outputs "OK" to the console, because the "label" option defaults to "OK".
+// Outputs "OK" to the console (because the "label" option defaults to "OK").
 myWidgetView = new WidgetView( { "type" : "button" } ).render();
 
 myWidgetView.setOptions( { "label" : "Save" } );
 myWidgetView.render();  // Outputs "Save" to the console.
 
-// Throws an exception, because the required "type" option is missing.
+// Throws an exception (because the required "type" option is missing).
 myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 ```
 
@@ -83,11 +83,10 @@ You may alternatively supply a function that _returns_ an array as `view.options
 
 Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in `view.options`. If a "required" option is not supplied (and it is not already on the view) an exception is raised.
 
-#### `view.onOptionsChanged( changedOptions )` callback
-
-This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. (Therefore it is generally _not_ called when options are first set during view initialization.) `changedOptions` is a hash of the changed options and their new values.
-
 #### `view.getOptionNames()`
 
 Returns an array containing the names of the options declared in `view.options`.
 
+#### `view.onOptionsChanged( changedOptions )` callback
+
+This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. (Therefore it is generally _not_ called when options are first set during view initialization.) `changedOptions` is a hash of the changed options and their new values.
