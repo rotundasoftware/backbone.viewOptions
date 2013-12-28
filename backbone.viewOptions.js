@@ -24,19 +24,19 @@
 					thisOptionDefaultValue = thisOptionDeclaration.defaultValue;
 
 					if( thisOptionRequired ) {
-						// note we do not throw an error if a required option is not supplied, but it is found on the   
-						// object itself (due to a prior call of view.setOptions, most likely)
+						// note we do not throw an error if a required option is not supplied, but it is  
+						// found on the object itself (due to a prior call of view.setOptions, most likely)
 						if( ! options || ! _.contains( _.keys( options ), thisOptionName ) &&
 							_.isUndefined( _this[ thisOptionName ] ) )
 							throw new Error( "Required option \"" + thisOptionName + "\" not supplied." );
 					}
 
-					// attach the supplied option, or the appropriate default value, to the view object
+					// attach the supplied value of this option, or the appropriate default value, to the view object
 					if( options && thisOptionName in options ) {
 						if( ! _.isUndefined( _this[ thisOptionName ] ) ) optionsThatWereChanged[ thisOptionName ] = options[ thisOptionName ];
 						_this[ thisOptionName ] = options[ thisOptionName ];
-						// we do NOT delete the option of the options object here, so that multiple view
-						// can be passed the same options object without issue.
+						// note we do NOT delete the option off the options object here so that
+						// multiple views can be passed the same options object without issue.
 					}
 					else if( ! _.isUndefined( thisOptionDefaultValue ) && _.isUndefined( _this[ thisOptionName ] ) ) {
 						// note defaults do not write over any existing properties on the view itself.
