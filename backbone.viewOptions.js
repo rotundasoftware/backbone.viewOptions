@@ -74,15 +74,14 @@
 			if( _.isString( thisOptionDeclaration ) )
 				thisOptionName = thisOptionDeclaration;
 			else if( _.isObject( thisOptionDeclaration ) ) {
-				if( ! thisOptionDeclaration.name ) throw new Error( "Missing option name in option declaration object" );
-				thisOptionName = thisOptionDeclaration.name;
-				thisOptionDefaultValue = _.clone( thisOptionDeclaration.defaultValue );
+				thisOptionName = _.first( _.keys( thisOptionDeclaration ) );
+				thisOptionDefaultValue = thisOptionDeclaration.thisOptionName;
 			}
 			else throw new Error( "Each element in the option declarations array must be either a string or an object." );
 
 			if( thisOptionName[ thisOptionName.length - 1 ] === "!" ) {
-				thisOptionName = thisOptionName.slice( 0, thisOptionName.length - 1 );
 				thisOptionRequired = true;
+				thisOptionName = thisOptionName.slice( 0, thisOptionName.length - 1 );
 			}
 
 			normalizedOptionDeclarations.push( {
