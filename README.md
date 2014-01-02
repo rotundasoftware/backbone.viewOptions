@@ -38,7 +38,7 @@ myButtonView = new ButtonView( { "label" : "OK" } );
 
 WidgetView = BaseView.extend( {
 	options : [
-		"type!",  // Use a trailing explanation mark to indicate that an option is required.
+		"type!",  // Use a trailing exclamation mark to indicate that an option is required.
 		{ "label" : "OK" }  // Use this object syntax to give an option a default value.
 	]
 
@@ -74,7 +74,7 @@ initialize : function( options ) {
 #### `view.options` property
 
 An "option declarations" array should be supplied as the `options` property of the view class. Each element in the array must be a string or an object.
-* A string element simply white-lists the name of an option that should be attached to the view when it is supplied in `view.setOptions()`'s `optionsHash` (see below). The name may optionally be followed by an explanation mark, which indicates a "required" option.
+* A string element simply white-lists the name of an option that should be attached to the view when it is supplied in `view.setOptions()`'s `optionsHash` (see below). The name may optionally be followed by an exclamation mark, which indicates a "required" option.
 * An object element may be used to give an option a default value, the key of the object being the option's name and the value its default value.
 
 You may alternatively supply a function that _returns_ an array as `view.options`, very much like how you may supply a function that returns a hash for the built-in backbone `view.events` property.
