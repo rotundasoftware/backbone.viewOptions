@@ -75,7 +75,7 @@
 				thisOptionName = thisOptionDeclaration;
 			else if( _.isObject( thisOptionDeclaration ) ) {
 				thisOptionName = _.first( _.keys( thisOptionDeclaration ) );
-				thisOptionDefaultValue = thisOptionDeclaration.thisOptionName;
+				thisOptionDefaultValue = thisOptionDeclaration[thisOptionName];
 			}
 			else throw new Error( "Each element in the option declarations array must be either a string or an object." );
 
