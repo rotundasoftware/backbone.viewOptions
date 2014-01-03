@@ -12,7 +12,6 @@ $( document ).ready( function() {
 		initialize : function( options ) {
 			Backbone.ViewOptions.add( this );
 			this.setOptions( options );
-			// trigger a backbone message here?
 		}
 	} );
     
@@ -64,15 +63,10 @@ $( document ).ready( function() {
 	      
 			viewOptionsInstance = new MyViewOptionsClass( { "name" : "helloWorld" } );
 	      
-			equal( viewOptionsInstance.name, 
-				"helloWorld", 
-				"Found the expected value for the single option." );
+			equal( viewOptionsInstance.name, "helloWorld", "Found the expected value for the single option." );
 			// test getOptionNames on a single option.
-			equal( viewOptionsInstance.getOptionNames(), 
-				"name", 
-				"Found the expected option name via view.getOptionNames()."
-			);
-	  	} 
+			equal( viewOptionsInstance.getOptionNames(), "name", "Found the expected option name via view.getOptionNames()." );
+	  	}
 	);
     
 	// Basic creation with multiple options.
@@ -84,12 +78,12 @@ $( document ).ready( function() {
 		4,
 		function() {
 			var MyViewOptionsClass = TestView.extend( {
-			options : [ "required!", "optional", { "deFault" : "value" } ]
+				options : [ "required!", "optional", { "deFault" : "value" } ]
 			} );
 
-			// Test getOptionNames on multiple options.  We expect the
-			// result to strip any required markers as well as any
-			// default values.
+			// Test getOptionNames on multiple options.  We expect
+			// results to strip any required marks as well as any
+			// default values and return only the option names.
 			viewOptionsInstance = new MyViewOptionsClass( { "required" : "ofCourse","optional" : "someTimes", "deFault"  : "always" } );
 			equal( viewOptionsInstance.required, "ofCourse", "Required option correctly created with expected value." );
 			equal( viewOptionsInstance.optional, "someTimes", "Optional option correctly created with expected value." );
@@ -98,8 +92,7 @@ $( document ).ready( function() {
 		}
 	);
 
-
-	// Test the creation of a viewOption with a default value without
+	// Test the creation of a viewOption with a default value and without
 	// a value provided to the constructor method.  We expect that the
 	// default value will be used.
 	test( "with the use of a default value.",
@@ -111,17 +104,36 @@ $( document ).ready( function() {
 			viewOptionsInstance = new MyViewOptionsClass();
 			equal( viewOptionsInstance.city, "New York", "the expected default value was correctly used." );
 			viewOptionsInstance = new MyViewOptionsClass( { "city" : "San Francisco" } );
-			equal( viewOptionsInstance.city, "San Francisco","the default value was correctly overridden when supplied to the constructor." );
+			equal( viewOptionsInstance.city, "San Francisco", "the default value was correctly overridden when supplied to the constructor." );
 	  	} 
 	);
 
-	// In reading the source I found that view.setOption() should not modify the
-	// options provided to the class definition.  Here we setup a sharedOptions
-	// object and pass it to MyViewOptionsClass1 and MyViewOptionsClass2.  We
-	// expect that both classes will have the name options.
 
-	// This information does not appear in any documentation outside of source
-	// comments, but it stands that this behavior should be depended on and 	// therefore tested.
+	// Test an aspect of default values, which concerns a view that already
+	// has a value for an attribute, which a default value would normally 
+	// set.  In that case we do not use the default value and leave the 
+	// value stored inside the object alone.
+	test( "with the use of a default value and a pre-existing value in the view.",
+		1,
+		function() {
+			var MyViewOptionsClass = TestView.extend( {
+				options : [ { "dinner" : "takeout" } ],
+				dinner : "homecooked"
+			} );
+			viewOptionsInstance = new MyViewOptionsClass();
+			equal( viewOptionsInstance.dinner, "homecooked", "the default value was correctly not used since the view contained a pre-existing value for the option." );
+		}
+	);
+
+	// In reading the source I found that view.setOption() should not 
+	// modify the options provided to the class definition.  Here we setup
+	// a sharedOptions object and pass it to MyViewOptionsClass1 and 
+	// MyViewOptionsClass2.  We expect that both classes will have the 
+	// name options.
+
+	// This information does not appear in any documentation outside of 
+	// source comments, but it stands that this behavior could be 
+	/// depended on and therefore should be tested.
 	test( "without modifying the value passed as the class options",
 		3,
 		function() {
@@ -134,14 +146,14 @@ $( document ).ready( function() {
 				options : sharedOptions
 			} );
 	      
-			viewOptionsInstance1 = new MyViewOptionsClass1( { "make" : "GM", "model" : "EV1" } );
-	 		viewOptionsInstance2 = new MyViewOptionsClass2( { "make" : "Tesla", "model" : "Roadster" } );
+			var viewOptionsInstance1 = new MyViewOptionsClass1( { "make" : "GM", "model" : "EV1" } );
+	 		var viewOptionsInstance2 = new MyViewOptionsClass2( { "make" : "Tesla", "model" : "Roadster" } );
 			deepEqual( sharedOptions, sharedOptionsCopy,"view.options were not modified during instance construction." );
 			deepEqual( sharedOptions, viewOptionsInstance1.options, "Instance1's options match the shared options." );
 			deepEqual( sharedOptions, viewOptionsInstance2.options, "Instance2's options match the shared options." );
 
-			// stash the two instances in viewOptionsInstance for cleanup
-			// by the teardown method of the test module.
+			// stash the two instances in viewOptionsInstance for
+			// cleanup by the teardown method of the test module.
 			viewOptionsInstance = [ viewOptionsInstance1,
 						viewOptionsInstance2 ];
 	  	} 
@@ -196,8 +208,8 @@ $( document ).ready( function() {
 		}
 	);
     
-	// We can update options with a call to view.setOptions().	We test 
-	// that this works.	 We also test what happens when we set a required
+	// We can update options with a call to view.setOptions().  We test 
+	// that this works.  We also test what happens when we set a required
 	// field to undefined.
 	test( "view.setOptions() alters option values.",
 		3,
