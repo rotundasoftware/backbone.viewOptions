@@ -127,15 +127,20 @@ $( document ).ready( function() {
 
 	// In reading the source I found that view.setOption() should not 
 	// modify the options provided to the class definition.  Here we setup
-	// a sharedOptions object and pass it to MyViewOptionsClass1 and 
-	// MyViewOptionsClass2.  We expect that both classes will have the 
-	// name options.
+	// a shared initialization options object and pass it to two instances
+	// of MyViewOptionsClass1.  We test that the two instances will share
+	// the same values.
+	
+	// We also setup a sharedOptions object and pass it to 
+	// MyViewOptionsClass1 and  MyViewOptionsClass2.  We expect that both 
+	// classes will have the same options.
 
 	// This information does not appear in any documentation outside of 
 	// source comments, but it stands that this behavior could be 
 	/// depended on and therefore should be tested.
+
 	test( "without modifying the value passed as the class options",
-		3,
+		7,
 		function() {
 			var sharedOptions = [ "make!", "model", { "size" : "default" } ];
 			var sharedOptionsCopy = sharedOptions;
@@ -145,9 +150,19 @@ $( document ).ready( function() {
 			var MyViewOptionsClass2 = TestView.extend( {
 				options : sharedOptions
 			} );
-	      
-			var viewOptionsInstance1 = new MyViewOptionsClass1( { "make" : "GM", "model" : "EV1" } );
-	 		var viewOptionsInstance2 = new MyViewOptionsClass2( { "make" : "Tesla", "model" : "Roadster" } );
+
+			// First test that initOptions are shareable.
+			var initOptions = { "make" : "Ford", "model" : "A" };
+			var viewOptionsInstance1 = new MyViewOptionsClass1( initOptions );
+			var viewOptionsInstance2 = new MyViewOptionsClass1( initOptions );
+			equal( viewOptionsInstance1.make, "Ford", "Found that instance 1 has the correct 'make' option." );
+			equal( viewOptionsInstance2.make, "Ford", "Found that instance 2 has the correct 'make' option." );
+			equal( viewOptionsInstance1.model, "A", "Found that instance 1 has the correct 'model' option." );
+			equal( viewOptionsInstance2.model, "A", "Found that instance 2 has the correct 'model' option." );
+
+			// Second test that Class1 and Class2 share options.
+			viewOptionsInstance1 = new MyViewOptionsClass1( { "make" : "GM", "model" : "EV1" } );
+	 		viewOptionsInstance2 = new MyViewOptionsClass2( { "make" : "Tesla", "model" : "Roadster" } );
 			deepEqual( sharedOptions, sharedOptionsCopy,"view.options were not modified during instance construction." );
 			deepEqual( sharedOptions, viewOptionsInstance1.options, "Instance1's options match the shared options." );
 			deepEqual( sharedOptions, viewOptionsInstance2.options, "Instance2's options match the shared options." );
