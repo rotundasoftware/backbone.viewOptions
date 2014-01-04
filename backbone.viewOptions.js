@@ -9,8 +9,8 @@
 	Backbone.ViewOptions = {};
 
 	Backbone.ViewOptions.add = function( view ) {
-		
-		// ****************** Additional public view methods ****************** 
+
+		// ****************** Public methods added to view ****************** 
 
 		view.setOptions = function( options ) {
 			var _this = this;
@@ -67,6 +67,9 @@
 	// ****************** Private Utility Functions ****************** 
 
 	function _normalizeOptionDeclarations( optionDeclarations ) {
+		// convert our short-hand option syntax (with exclamation marks, etc.)
+		// to a simple array of standard option declaration objects.
+		
 		var normalizedOptionDeclarations = [];
 
 		if( ! _.isArray( optionDeclarations ) ) throw new Error( "Option declarations must be an array." );
