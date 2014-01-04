@@ -9,6 +9,9 @@
 	Backbone.ViewOptions = {};
 
 	Backbone.ViewOptions.add = function( view ) {
+		
+		// ****************** Additional public view methods ****************** 
+
 		view.setOptions = function( options ) {
 			var _this = this;
 			var optionsThatWereChanged = {};
@@ -60,6 +63,8 @@
 			return _.pluck( normalizedOptionDeclarations, "name" );
 		};
 	};
+
+	// ****************** Private Utility Functions ****************** 
 
 	function _normalizeOptionDeclarations( optionDeclarations ) {
 		var normalizedOptionDeclarations = [];
