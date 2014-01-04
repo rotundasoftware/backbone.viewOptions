@@ -78,17 +78,17 @@ $( document ).ready( function() {
 		4,
 		function() {
 			var MyViewOptionsClass = TestView.extend( {
-				options : [ "required!", "optional", { "deFault" : "value" } ]
+				options : [ "required!", "optional", { "default" : "value" } ]
 			} );
 
 			// Test getOptionNames on multiple options.  We expect
 			// results to strip any required marks as well as any
 			// default values and return only the option names.
-			viewOptionsInstance = new MyViewOptionsClass( { "required" : "ofCourse","optional" : "someTimes", "deFault"  : "always" } );
+			viewOptionsInstance = new MyViewOptionsClass( { "required" : "ofCourse","optional" : "someTimes", "default"  : "always" } );
 			equal( viewOptionsInstance.required, "ofCourse", "Required option correctly created with expected value." );
 			equal( viewOptionsInstance.optional, "someTimes", "Optional option correctly created with expected value." );
-			equal( viewOptionsInstance.deFault, "always", "Default option correctly created with expected value." );
-			deepEqual( viewOptionsInstance.getOptionNames(), [ "required", "optional", "deFault" ],"Found the expected array of option names via view.getOptionNames()" );
+			equal( viewOptionsInstance[ "default" ], "always", "Default option correctly created with expected value." );
+			deepEqual( viewOptionsInstance.getOptionNames(), [ "required", "optional", "default" ],"Found the expected array of option names via view.getOptionNames()" );
 		}
 	);
 
@@ -241,7 +241,7 @@ $( document ).ready( function() {
 	// When we modify a value in a viewOptions object it's possible to 
 	// use onOptionsChanged to track changes that were made.
 	asyncTest( "calls view.onOptionsChanged() method after view.setOptions()",
-		1,
+		2,
 		function() {
 			var MyViewOptionsClass = TestView.extend( {
 
@@ -250,6 +250,7 @@ $( document ).ready( function() {
 				onOptionsChanged : function( changedOptions ) {
 					ok( true, "The following options have changed: " + changedOptions.toSource() );
 					start();
+					equal( changedOptions[ "year" ], "2014", "Happy New Year, 2014!" );
 				},
 			} );
 
