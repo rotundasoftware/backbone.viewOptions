@@ -15,39 +15,8 @@ $( document ).ready( function() {
 		}
 	} );
     
-	// A method used to clean up after each test.
-	// we handle single viewOptions and arrays of viewOptions.
-	// this function should be supplied as the teardown to a module.
-	function teardownViewOptions ( viewOptions ) {
-		// Check to first see if we have some objects to clean up.
-		// Exceptions could cause the viewOption argument to be empty.
-		if ( viewOptions ) {
-	    		// If it's an array of objects then remove them.
-			if ( _.isArray( viewOptions ) ) {
-				_.each( viewOptions,
-					function() { 
-						// for some reason we occasionally get the
-						// window object here, so test if we have a 
-						// remove method before trying to call it.
-						if ( this.remove ) this.remove(); 
-					}
-		      		);
-			// otherwise remove the singleton instance.
-			} else
-				viewOptions.remove();
-		}
-		return true;
-	}
-    
 	// Our first module concerns the creation of options in a viewOption
-	module( "viewOptions creation", 
-		{
-			teardown : function() {
-				// we store views in the viewOptionsInstance for teardown.
-				teardownViewOptions( viewOptionsInstance );
-			}
-		}
-	);
+	module( "viewOptions creation", {} );
     
 	// Basic creation with a single option called name.
 	// We test by making an instance of a simple single option class
@@ -215,13 +184,7 @@ $( document ).ready( function() {
 
 	// Once a viewOption has been created, it's values can be modified, so
 	// we need a new module to reflect tests that update viewOptions.
-	module( "viewOptions value modification.",
-		{
-			teardown : function() {
-				teardownViewOptions( viewOptionsInstance );
-			}
-		}
-	);
+	module( "viewOptions value modification.", {} );
     
 	// We can update options with a call to view.setOptions().  We test 
 	// that this works.  We also test what happens when we set a required
