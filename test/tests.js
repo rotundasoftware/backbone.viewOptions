@@ -29,9 +29,9 @@ $( document ).ready( function() {
 			var MyViewOptionsClass = TestView.extend( {
 				options : [ "name" ]
 			} );
-	      
+
 			viewOptionsInstance = new MyViewOptionsClass( { "name" : "helloWorld" } );
-	      
+
 			equal( viewOptionsInstance.name, "helloWorld", "Found the expected value for the single option." );
 			// test getOptionNames on a single option.
 			equal( viewOptionsInstance.getOptionNames(), "name", "Found the expected option name via view.getOptionNames()." );
