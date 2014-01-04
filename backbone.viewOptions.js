@@ -27,8 +27,8 @@
 						// note we do not throw an error if a required option is not supplied, but it is  
 						// found on the object itself (due to a prior call of view.setOptions, most likely)
 						if( ! options ||
-							( ! _.contains( _.keys( options ), thisOptionName ) || _.isUndefined( options[ thisOptionName ] ) ) &&
-							_.isUndefined( _this[ thisOptionName ] ) )
+							( ( ! _.contains( _.keys( options ), thisOptionName ) && _.isUndefined( _this[ thisOptionName ] ) ) ) ||
+							_.isUndefined( options[ thisOptionName ] ) )
 							throw new Error( "Required option \"" + thisOptionName + "\" was not supplied." );
 					}
 

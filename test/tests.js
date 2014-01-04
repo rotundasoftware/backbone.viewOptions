@@ -226,8 +226,6 @@ $( document ).ready( function() {
 				options : [ "year" ],
 		       
 				onOptionsChanged : function( changedOptions ) {
-					ok( true, "The following options have changed: " + changedOptions.toSource() );
-					start();
 					equal( changedOptions[ "year" ], "2014", "Happy New Year, 2014!" );
 				},
 			} );
