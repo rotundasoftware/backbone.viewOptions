@@ -35,6 +35,7 @@ ButtonView = BaseView.extend( {
 // Outputs "OK" to the console.
 myButtonView = new ButtonView( { "label" : "OK" } );
 
+// Another example showing default values and required options
 WidgetView = BaseView.extend( {
 	options : [
 		"type!",  // Use a trailing exclamation mark to indicate that an option is required.
