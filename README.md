@@ -16,7 +16,7 @@ A mini [Backbone.js](http://backbonejs.org/) plugin to declare and set options o
 Backbone.ViewOptions.add( Backbone.View.prototype );
 
 ButtonView = Backbone.View.extend( {
-	options : [ "label" ] // an array of white-listed options
+	options : [ "label" ],
 
 	initialize : function( options ) {
 		this.setOptions( options );  // set the view's options from initialization options
@@ -35,7 +35,7 @@ WidgetView = Backbone.View.extend( {
 	options : [
 		{ "label" : "OK" },  // Use this object syntax to give an option a default value.
 		"type!"  // Use a trailing exclamation mark to indicate that an option is required.
-	]
+	],
 
 	initialize : function( options ) {
 		this.setOptions( options );
