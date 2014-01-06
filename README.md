@@ -90,3 +90,8 @@ Returns an array containing all view properties that are options (i.e. the optio
 #### `view.onOptionsChanged( changedOptions )` callback
 
 This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. `changedOptions` is a hash of the changed options and their new values.
+
+## Requirements / Compatibility
+
+* [Backbone](http://www.backbonejs.org) 1.1.0 or later
+* [Underscore](http://underscorejs.org)
