@@ -57,7 +57,7 @@ myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 #### `Backbone.ViewOptions.add( view )`
 
-Initialize the view plugin on a particular view class or instance. `Backbone.ViewOptions.add( Backbone.View.prototype )` will make the plugin available on all backbone views.
+Initialize the view plugin on a view class or instance. `Backbone.ViewOptions.add( Backbone.View.prototype )` will make the plugin available on all backbone views.
 
 #### `view.options` property
 
