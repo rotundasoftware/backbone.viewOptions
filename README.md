@@ -12,14 +12,14 @@ A mini [Backbone.js](http://backbonejs.org/) plugin to declare and set options o
 ## Usage
 
 ```javascript
-// Add the view options functionality to all our views
+// Add the view options functionality to all our views.
 Backbone.ViewOptions.add( Backbone.View.prototype );
 
 ButtonView = Backbone.View.extend( {
 	options : [ "label" ],
 
 	initialize : function( options ) {
-		this.setOptions( options );  // set the view's options from initialization options
+		this.setOptions( options );  // set the view's options from initialization options.
 
 		// Options that are white-listed in the view's `options`
 		// property are now attached to the view object.
@@ -30,7 +30,7 @@ ButtonView = Backbone.View.extend( {
 // Outputs "OK" to the console.
 myButtonView = new ButtonView( { "label" : "OK" } );
 
-// Another example showing default values and required options
+// Another example showing default values and required options.
 WidgetView = Backbone.View.extend( {
 	options : [
 		{ "label" : "OK" },  // Use this object syntax to give an option a default value.
@@ -57,7 +57,7 @@ myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 #### `Backbone.ViewOptions.add( view )`
 
-Initialize the view plugin on a particular view class or instance. `Backbone.ViewOptions.mixin( Backbone.View.prototype )` will make the plugin available on all backbone views.
+Initialize the view plugin on a particular view class or instance. `Backbone.ViewOptions.add( Backbone.View.prototype )` will make the plugin available on all backbone views.
 
 #### `view.options` property
 
