@@ -22,9 +22,9 @@
 				var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
 
 				_.each( normalizedOptionDeclarations, function( thisOptionDeclaration ) {
-					thisOptionName = thisOptionDeclaration.name;
-					thisOptionRequired = thisOptionDeclaration.required;
-					thisOptionDefaultValue = thisOptionDeclaration.defaultValue;
+					var thisOptionName = thisOptionDeclaration.name;
+					var thisOptionRequired = thisOptionDeclaration.required;
+					var thisOptionDefaultValue = thisOptionDeclaration.defaultValue;
 
 					if( thisOptionRequired ) {
 						// note we do not throw an error if a required option is not supplied, but it is  

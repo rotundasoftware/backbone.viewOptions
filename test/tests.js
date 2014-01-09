@@ -218,8 +218,8 @@ $( document ).ready( function() {
 
 	// When we modify a value in a viewOptions object it's possible to 
 	// use onOptionsChanged to track changes that were made.
-	asyncTest( "calls view.onOptionsChanged() method after view.setOptions()",
-		2,
+	test( "calls view.onOptionsChanged() method after view.setOptions()",
+		1,
 		function() {
 			var MyViewOptionsClass = TestView.extend( {
 
