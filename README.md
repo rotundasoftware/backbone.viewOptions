@@ -5,7 +5,7 @@ A mini [Backbone.js](http://backbonejs.org/) plugin to declare and set options o
 ## Benefits
 
 * Use a simple declarative syntax to attach white-listed initialization options directly to your views. 
-* Optionally define default values for options, and ensure required options are supplied.
+* Optionally define default values for options, and assert that required options are supplied.
 * Can be mixed into any view class.
 
 ## Usage
