@@ -1,0 +1,19 @@
+{
+	"name": "backbone.viewOptions",
+	"version": "0.1.0",
+	"homepage": "https://github.com/rotundasoftware/backbone.viewOptions",
+	"authors": [
+		"David Beck <david@rotundasoftware.com>"
+	],
+	"description": "A mini Backbone.js plugin to declare and set options on views.",
+	"main": "backbone.viewOptions.js",
+	"keywords": [
+		"backbone",
+		"views",
+		"view"
+	],
+	"license": "MIT",
+	"dependencies" : {
+		"backbone" : "~1.1"
+	}
+}
