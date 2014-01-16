@@ -1,6 +1,6 @@
 # Backbone.viewOptions
 
-A mini [Backbone.js](http://backbonejs.org/) plugin to declare and set options on views.
+A mini [Backbone.js](http://backbonejs.org/) plugin to declare and get/set options on views.
 
 ## Benefits
 
@@ -70,15 +70,26 @@ You may alternatively supply a function that _returns_ an array as `view.options
 
 Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in `view.options`. If a "required" option is not supplied (and it is not already on the view) an exception is raised.
 
-#### `view.getOptionNames()`
+#### `view.getOptions()`
 
-Returns an array containing all view properties that are options (i.e. the options declared in `view.options`).
+Returns a hash mapping all option names to current values.
 
 #### `view.onOptionsChanged( changedOptions )` callback
 
-This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. `changedOptions` is a hash of the changed options and their new values.
+This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. `changedOptions` is a hash of the changed options and their new values. The underscored version of this method, `_onOptionsChanged`, is also supported.
 
 ## Requirements / Compatibility
 
 * [Backbone](http://www.backbonejs.org) 1.1.0 or later
 * [Underscore](http://underscorejs.org)
+
+## Change log
+
+#### 0.2.0
+* Changed `view.getOptionsNames()` to `view.getOptions()`
+* Added support for underscored `view._onOptionsChanged`
+
+#### 0.1.0
+* Initial release
+
+

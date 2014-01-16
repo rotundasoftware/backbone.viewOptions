@@ -21,8 +21,8 @@ $( document ).ready( function() {
 	// Basic creation with a single option called name.
 	// We test by making an instance of a simple single option class
 	// and check the option's value.
-	// We also check that we get back the option name when calling
-	// view.getOptionNames().
+	// We also check that we get back the option when calling
+	// view.getOptions().
 	test( "with a single option.",
 		2,
 		function() {
@@ -33,16 +33,15 @@ $( document ).ready( function() {
 			viewOptionsInstance = new MyViewOptionsClass( { "name" : "helloWorld" } );
 
 			equal( viewOptionsInstance.name, "helloWorld", "Found the expected value for the single option." );
-			// test getOptionNames on a single option.
-			equal( viewOptionsInstance.getOptionNames(), "name", "Found the expected option name via view.getOptionNames()." );
+			deepEqual( viewOptionsInstance.getOptions(), { name : "helloWorld" }, "Found the expected option via view.getOptions()." );
 	  	}
 	);
     
 	// Basic creation with multiple options.
 	// We test that we can create an instance of an object with multiple
 	// options and verify the option values.
-	// We also check that we get back an array of names when calling
-	// view.getOptionNames().
+	// We also check that we get back the expected result when calling
+	// view.getOptions().
 	test( "with multiple options.",
 		4,
 		function() {
@@ -50,14 +49,14 @@ $( document ).ready( function() {
 				options : [ "required!", "optional", { "default" : "value" } ]
 			} );
 
-			// Test getOptionNames on multiple options.  We expect
+			// Test getOptions on multiple options.  We expect
 			// results to strip any required marks as well as any
 			// default values and return only the option names.
-			viewOptionsInstance = new MyViewOptionsClass( { "required" : "ofCourse","optional" : "someTimes", "default"  : "always" } );
+			viewOptionsInstance = new MyViewOptionsClass( { "required" : "ofCourse", "optional" : "someTimes", "default"  : "always" } );
 			equal( viewOptionsInstance.required, "ofCourse", "Required option correctly created with expected value." );
 			equal( viewOptionsInstance.optional, "someTimes", "Optional option correctly created with expected value." );
 			equal( viewOptionsInstance[ "default" ], "always", "Default option correctly created with expected value." );
-			deepEqual( viewOptionsInstance.getOptionNames(), [ "required", "optional", "default" ],"Found the expected array of option names via view.getOptionNames()" );
+			deepEqual( viewOptionsInstance.getOptions(), { "required" : "ofCourse", "optional" : "someTimes", "default"  : "always" }, "Found the expected options via view.getOptions()" );
 		}
 	);
 
@@ -145,8 +144,8 @@ $( document ).ready( function() {
     
 	// The view.option can also be a function, which returns an array.
 	// We test that we can create a class with a function for it's
-	// options attribute and that we get back the expected option names
-	// when calling view.getOptionNames() on an instance.
+	// options attribute and that we get back the expected options
+	// when calling view.getOptions() on an instance.
 	test( "with the view.option as function.",
 		2,
 		function () {
@@ -156,10 +155,10 @@ $( document ).ready( function() {
 				}
 			} );
 
-			viewOptionsInstance = new MyViewOptionsClass( { "one" : "1","two" : "2" } );
+			viewOptionsInstance = new MyViewOptionsClass( { "one" : "1", "two" : "2" } );
 			equal( viewOptionsInstance.one, "1", "successfully created an instance of a viewOption class with options supplied by a function." );
 
-			deepEqual( viewOptionsInstance.getOptionNames(), [ "one", "two", "three" ], "the expected option names were returned by view.getOptionNames()." );
+			deepEqual( viewOptionsInstance.getOptions(), { "one" : "1", "two" : "2", "three" : "3" }, "the expected option were returned by view.getOptions()." );
 							      
 		} 
 	);

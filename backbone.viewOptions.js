@@ -1,5 +1,5 @@
 /*
- * Backbone.ViewOptions, v0.1
+ * Backbone.ViewOptions, v0.2
  * Copyright (c)2014 Rotunda Software, LLC.
  * Distributed under MIT license
  * http://github.com/rotundasoftware/backbone.viewOptions
@@ -8,7 +8,8 @@
 ( function( Backbone ) {
 	Backbone.ViewOptions = {};
 
-	Backbone.ViewOptions.add = function( view ) {
+	Backbone.ViewOptions.add = function( view, optionsChangedCallback ) {
+		if( _.isUndefined( optionsChangedCallback ) ) optionsChangedCallback = "onOptionsChanged";
 
 		// ****************** Public methods added to view ****************** 
 
@@ -22,9 +23,9 @@
 				var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
 
 				_.each( normalizedOptionDeclarations, function( thisOptionDeclaration ) {
-					var thisOptionName = thisOptionDeclaration.name;
-					var thisOptionRequired = thisOptionDeclaration.required;
-					var thisOptionDefaultValue = thisOptionDeclaration.defaultValue;
+					thisOptionName = thisOptionDeclaration.name;
+					thisOptionRequired = thisOptionDeclaration.required;
+					thisOptionDefaultValue = thisOptionDeclaration.defaultValue;
 
 					if( thisOptionRequired ) {
 						// note we do not throw an error if a required option is not supplied, but it is  
@@ -51,16 +52,22 @@
 				} );
 			}
 			
-			if( _.isFunction( _this.onOptionsChanged ) && _.keys( optionsThatWereChanged ).length > 0 )
-				_this.onOptionsChanged( optionsThatWereChanged );
+			if( _.keys( optionsThatWereChanged ).length > 0 ) {
+				if( _.isFunction( _this.onOptionsChanged ) )
+					_this.onOptionsChanged( optionsThatWereChanged );
+				else if( _.isFunction( _this._onOptionsChanged ) )
+					_this._onOptionsChanged( optionsThatWereChanged );
+			}
 		};
 
-		view.getOptionNames = function() {
+		view.getOptions = function() {
 			var optionDeclarations = _.result( this, "options" );
 			if( _.isUndefined( optionDeclarations ) ) return [];
 			
 			var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
-			return _.pluck( normalizedOptionDeclarations, "name" );
+			var optionsNames = _.pluck( normalizedOptionDeclarations, "name" );
+
+			return _.pick( this, optionsNames );
 		};
 	};
 
