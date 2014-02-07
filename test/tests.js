@@ -224,8 +224,8 @@ $( document ).ready( function() {
 
 				options : [ "year" ],
 		       
-				onOptionsChanged : function( changedOptions, originalOptions ) {
-					equal( originalOptions[ "year" ], "2013", "Goodbye 2013." );
+				onOptionsChanged : function( changedOptions, previousOptions ) {
+					equal( previousOptions[ "year" ], "2013", "Goodbye 2013." );
 					equal( changedOptions[ "year" ], "2014", "Happy New Year, 2014!" );
 				},
 			} );

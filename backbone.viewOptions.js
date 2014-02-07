@@ -16,7 +16,7 @@
 		view.setOptions = function( options ) {
 			var _this = this;
 			var optionsThatWereChanged = {};
-			var optionsThatWereChangedOriginalValues = {};
+			var optionsThatWereChangedPreviousValues = {};
 
 			var optionDeclarations = _.result( this, "options" );
 
@@ -41,7 +41,7 @@
 					if( options && thisOptionName in options ) {
 						// if this option already exists on the view, make a note that we will be changing it
 						if( ! _.isUndefined( _this[ thisOptionName ] ) ) {
-							optionsThatWereChangedOriginalValues[ thisOptionName ] = _this[ thisOptionName ];
+							optionsThatWereChangedPreviousValues[ thisOptionName ] = _this[ thisOptionName ];
 							optionsThatWereChanged[ thisOptionName ] = options[ thisOptionName ];
 						}
 						_this[ thisOptionName ] = options[ thisOptionName ];
@@ -57,9 +57,9 @@
 			
 			if( _.keys( optionsThatWereChanged ).length > 0 ) {
 				if( _.isFunction( _this.onOptionsChanged ) )
-					_this.onOptionsChanged( optionsThatWereChanged, optionsThatWereChangedOriginalValues );
+					_this.onOptionsChanged( optionsThatWereChanged, optionsThatWereChangedPreviousValues );
 				else if( _.isFunction( _this._onOptionsChanged ) )
-					_this._onOptionsChanged( optionsThatWereChanged, optionsThatWereChangedOriginalValues );
+					_this._onOptionsChanged( optionsThatWereChanged, optionsThatWereChangedPreviousValues );
 			}
 		};
 
