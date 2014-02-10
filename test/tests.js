@@ -218,13 +218,14 @@ $( document ).ready( function() {
 	// When we modify a value in a viewOptions object it's possible to 
 	// use onOptionsChanged to track changes that were made.
 	test( "calls view.onOptionsChanged() method after view.setOptions()",
-		1,
+		2,
 		function() {
 			var MyViewOptionsClass = TestView.extend( {
 
 				options : [ "year" ],
 		       
-				onOptionsChanged : function( changedOptions ) {
+				onOptionsChanged : function( changedOptions, previousOptions ) {
+					equal( previousOptions[ "year" ], "2013", "Goodbye 2013." );
 					equal( changedOptions[ "year" ], "2014", "Happy New Year, 2014!" );
 				},
 			} );
