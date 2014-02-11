@@ -24,10 +24,9 @@
 			if( ! _.isUndefined( optionDeclarations ) ) {
 				var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
 
-				_.each( normalizedOptionDeclarations, function( thisOptionDeclaration ) {
-					thisOptionName = thisOptionDeclaration.name;
-					thisOptionRequired = thisOptionDeclaration.required;
-					thisOptionDefaultValue = thisOptionDeclaration.defaultValue;
+				_.each( normalizedOptionDeclarations, function( thisOptionProperties, thisOptionName ) {
+					thisOptionRequired = thisOptionProperties.required;
+					thisOptionDefaultValue = thisOptionProperties.defaultValue;
 
 					if( thisOptionRequired ) {
 						// note we do not throw an error if a required option is not supplied, but it is  
@@ -69,8 +68,8 @@
 			if( _.isUndefined( optionDeclarations ) ) return [];
 			
 			var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
-			var optionsNames = _.pluck( normalizedOptionDeclarations, "name" );
-
+			var optionsNames = _.keys( normalizedOptionDeclarations );
+			
 			return _.pick( this, optionsNames );
 		};
 	};
@@ -81,7 +80,7 @@
 		// convert our short-hand option syntax (with exclamation marks, etc.)
 		// to a simple array of standard option declaration objects.
 		
-		var normalizedOptionDeclarations = [];
+		var normalizedOptionDeclarations = {};
 
 		if( ! _.isArray( optionDeclarations ) ) throw new Error( "Option declarations must be an array." );
 
@@ -104,11 +103,10 @@
 				thisOptionName = thisOptionName.slice( 0, thisOptionName.length - 1 );
 			}
 
-			normalizedOptionDeclarations.push( {
-				name : thisOptionName,
+			normalizedOptionDeclarations[ thisOptionName ] = {
 				required : thisOptionRequired,
 				defaultValue : thisOptionDefaultValue
-			} );
+			};
 		} );
 
 		return normalizedOptionDeclarations;
