@@ -80,7 +80,7 @@ This method, if it exists on a view, is called when option(s) _that are already 
 
 ## Requirements / Compatibility
 
-* [Backbone](http://www.backbonejs.org) 1.1.0 or later
+* [Backbone](http://www.backbonejs.org) 1.0.0 or later
 * [Underscore](http://underscorejs.org)
 
 ## Change log
