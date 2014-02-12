@@ -8,9 +8,8 @@
 ( function( Backbone ) {
 	Backbone.ViewOptions = {};
 
-	Backbone.ViewOptions.add = function( view, optionsDeclarationsVariableName, optionsChangedCallback ) {
-		if( _.isUndefined( optionsDeclarationsVariableName ) ) optionsDeclarationsVariableName = "options";
-		if( _.isUndefined( optionsChangedCallback ) ) optionsChangedCallback = "onOptionsChanged";
+	Backbone.ViewOptions.add = function( view, optionsDeclarationsProperty ) {
+		if( _.isUndefined( optionsDeclarationsProperty ) ) optionsDeclarationsProperty = "options";
 
 		// ****************** Public methods added to view ****************** 
 
@@ -19,7 +18,7 @@
 			var optionsThatWereChanged = {};
 			var optionsThatWereChangedPreviousValues = {};
 
-			var optionDeclarations = _.result( this, optionsDeclarationsVariableName );
+			var optionDeclarations = _.result( this, optionsDeclarationsProperty );
 
 			if( ! _.isUndefined( optionDeclarations ) ) {
 				var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
@@ -64,7 +63,7 @@
 		};
 
 		view.getOptions = function() {
-			var optionDeclarations = _.result( this, optionsDeclarationsVariableName );
+			var optionDeclarations = _.result( this, optionsDeclarationsProperty );
 			if( _.isUndefined( optionDeclarations ) ) return [];
 			
 			var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
