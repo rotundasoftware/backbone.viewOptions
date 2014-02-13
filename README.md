@@ -58,9 +58,9 @@ myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 Initialize the view plugin on a view class or instance. `Backbone.ViewOptions.add( Backbone.View.prototype )` will make the plugin available on all backbone views. `optionsDeclarationsProperty` specifies which view property holds the options declarations array and defaults to `"options"`. (If using Backbone < 1.1.0, specify another value to as these older version of Backbone conflict with `view.options`.)
 
-#### view.options (or view[ optionsDeclarationsProperty ])
+#### view.options
 
-The "optionDeclarationsProperty" array defaults to `view.options`, but can be configured (see `Backbone.ViewOptionsAdd()`).  Each element in the array must be a string or an object. 
+An "option declarations" array should be supplied as the `options` property of the view class (or the `optionsDeclarationsProperty` property). Each element in the array must be a string or an object. 
 * A string element simply white-lists the name of an option that should be attached to the view when it is supplied in `view.setOptions()`'s `optionsHash` (see below). The name may optionally be followed by an exclamation mark, which indicates a "required" option.
 * An object element may be used to give an option a default value, the key of the object being the option's name and the value its default value.
 
