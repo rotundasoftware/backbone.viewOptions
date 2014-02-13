@@ -12,10 +12,10 @@ A mini [Backbone.js](http://backbonejs.org/) plugin to declare and get/set optio
 
 ```javascript
 // Add the view options functionality to all our views.
-Backbone.ViewOptions.add( Backbone.View.prototype );
+Backbone.ViewOptions.add( Backbone.View.prototype, "initOptions" );
 
 ButtonView = Backbone.View.extend( {
-	options : [ "label" ],
+	initOptions : [ "label" ],
 
 	initialize : function( options ) {
 		this.setOptions( options );  // set the view's options from initialization options.
@@ -31,7 +31,7 @@ myButtonView = new ButtonView( { "label" : "OK" } );
 
 // Another example showing default values and required options.
 WidgetView = Backbone.View.extend( {
-	options : [
+	initOptions : [
 		{ "label" : "OK" },  // Use this object syntax to give an option a default value.
 		"type!"  // Use a trailing exclamation mark to indicate that an option is required.
 	],
@@ -54,21 +54,21 @@ myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 ## Methods and Properties
 
-#### `Backbone.ViewOptions.add( view )`
+#### `Backbone.ViewOptions.add( view, optionsDeclarationsProperty )`
 
-Initialize the view plugin on a view class or instance. `Backbone.ViewOptions.add( Backbone.View.prototype )` will make the plugin available on all backbone views.
+Initialize the view plugin on a view class or instance. `Backbone.ViewOptions.add( Backbone.View.prototype )` will make the plugin available on all backbone views.  Providing ```optionsDeclarationsProperty``` configures which of the view's properties holds the options declarations and should be set to a non-default value for backbone versions less than 1.1.0.
 
-#### `view.options` property
+#### optionsDeclarationsProperty array
 
-An "option declarations" array should be supplied as the `options` property of the view class. Each element in the array must be a string or an object.
+The "optionDeclarationsProperty" array defaults to `view.options`, but can be configured (see `Backbone.ViewOptionsAdd()`).  Each element in the array must be a string or an object. 
 * A string element simply white-lists the name of an option that should be attached to the view when it is supplied in `view.setOptions()`'s `optionsHash` (see below). The name may optionally be followed by an exclamation mark, which indicates a "required" option.
 * An object element may be used to give an option a default value, the key of the object being the option's name and the value its default value.
 
-You may alternatively supply a function that _returns_ an array as `view.options`, very much like how you may supply a function that returns a hash for the built-in backbone `view.events` property.
+You may alternatively supply a function that _returns_ an array, very much like how you may supply a function that returns a hash for the built-in backbone `view.events` property.
 
 #### `view.setOptions( optionHash )`
 
-Sets the view's options to the values in `optionHash` as appropriate, given the option declarations in `view.options`. If a "required" option is not supplied (and not already on the view) an exception is raised.
+Sets the view's options to the values in `optionHash` as appropriate. If a "required" option is not supplied (and not already on the view) an exception is raised.
 
 #### `view.getOptions()`
 
@@ -80,7 +80,7 @@ This method, if it exists on a view, is called when option(s) _that are already 
 
 ## Requirements / Compatibility
 
-* [Backbone](http://www.backbonejs.org) 1.1.0 or later
+* [Backbone](http://www.backbonejs.org) 1.0.0 or later
 * [Underscore](http://underscorejs.org)
 
 ## Change log
@@ -88,6 +88,7 @@ This method, if it exists on a view, is called when option(s) _that are already 
 #### 0.2.0
 * Changed `view.getOptionsNames()` to `view.getOptions()`
 * Added support for underscored `view._onOptionsChanged`
+* Added support for backbone<v1.1.0
 
 #### 0.1.0
 * Initial release
