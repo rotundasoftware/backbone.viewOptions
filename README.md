@@ -56,7 +56,7 @@ myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 #### `Backbone.ViewOptions.add( view, [ optionsDeclarationsProperty ] )`
 
-Initialize the view plugin on a view class or instance. `Backbone.ViewOptions.add( Backbone.View.prototype )` will make the plugin available on all backbone views. `optionsDeclarationsProperty` specifies which view property holds the options declarations array and defaults to `"options"`. (If using Backbone < 1.1.0, specify another value to as older version of Backbone overwrite `view.options`.)
+Initialize the view plugin on a view class or instance. `Backbone.ViewOptions.add( Backbone.View.prototype )` will make the plugin available on all backbone views. `optionsDeclarationsProperty` specifies which view property holds the options declarations array and defaults to `"options"`. (If using Backbone < 1.1.0, specify another value to as these older version of Backbone conflict with `view.options`.)
 
 #### view.options (or view[ optionsDeclarationsProperty ])
 
