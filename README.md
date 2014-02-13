@@ -12,10 +12,10 @@ A mini [Backbone.js](http://backbonejs.org/) plugin to declare and get/set optio
 
 ```javascript
 // Add the view options functionality to all our views.
-Backbone.ViewOptions.add( Backbone.View.prototype, "initOptions" );
+Backbone.ViewOptions.add( Backbone.View.prototype );
 
 ButtonView = Backbone.View.extend( {
-	initOptions : [ "label" ],
+	options : [ "label" ],
 
 	initialize : function( options ) {
 		this.setOptions( options );  // set the view's options from initialization options.
@@ -54,11 +54,11 @@ myOtherWidgetView = new WidgetView( { "label" : "Cancel" } ).render();
 
 ## Methods and Properties
 
-#### `Backbone.ViewOptions.add( view, optionsDeclarationsProperty )`
+#### `Backbone.ViewOptions.add( view, [ optionsDeclarationsProperty ] )`
 
-Initialize the view plugin on a view class or instance. `Backbone.ViewOptions.add( Backbone.View.prototype )` will make the plugin available on all backbone views.  Providing ```optionsDeclarationsProperty``` configures which of the view's properties holds the options declarations and should be set to a non-default value for backbone versions less than 1.1.0.
+Initialize the view plugin on a view class or instance. `Backbone.ViewOptions.add( Backbone.View.prototype )` will make the plugin available on all backbone views. `optionsDeclarationsProperty` specifies which view property holds the options declarations array and defaults to `"options"`. (If using Backbone < 1.1.0, specify another value to as older version of Backbone overwrite `view.options`.)
 
-#### optionsDeclarationsProperty array
+#### view.options (or view[ optionsDeclarationsProperty ])
 
 The "optionDeclarationsProperty" array defaults to `view.options`, but can be configured (see `Backbone.ViewOptionsAdd()`).  Each element in the array must be a string or an object. 
 * A string element simply white-lists the name of an option that should be attached to the view when it is supplied in `view.setOptions()`'s `optionsHash` (see below). The name may optionally be followed by an exclamation mark, which indicates a "required" option.
@@ -88,7 +88,7 @@ This method, if it exists on a view, is called when option(s) _that are already 
 #### 0.2.0
 * Changed `view.getOptionsNames()` to `view.getOptions()`
 * Added support for underscored `view._onOptionsChanged`
-* Added support for backbone<v1.1.0
+* Added `optionsDeclarationsProperty` argument to support Backbone < 1.1.0
 
 #### 0.1.0
 * Initial release
