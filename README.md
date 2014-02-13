@@ -74,9 +74,9 @@ Sets the view's options to the values in `optionHash` as appropriate. If a "requ
 
 Returns a hash mapping all option names to current values.
 
-#### `view.onOptionsChanged( changedOptions, previousValues )` callback
+#### `view.onOptionsChanged( newValues, previousValues )` callback
 
-This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. `changedOptions` and `previousValues` are both hashes of the changed options and their new and old values respectively. The underscored version of this method, `_onOptionsChanged`, is also supported.
+This method, if it exists on a view, is called when option(s) _that are already present on the view object_ are changed via `view.setOptions()`. `newValues` and `previousValues` are both hashes of the changed options to their new and old values respectively. The underscored version of this method, `_onOptionsChanged`, is also supported.
 
 ## Requirements / Compatibility
 
