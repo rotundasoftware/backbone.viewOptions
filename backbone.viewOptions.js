@@ -38,12 +38,15 @@
 
 					// attach the supplied value of this option, or the appropriate default value, to the view object
 					if( options && thisOptionName in options ) {
-						// if this option already exists on the view, make a note that we will be changing it
-						if( ! _.isUndefined( _this[ thisOptionName ] ) ) {
-							optionsThatWereChangedPreviousValues[ thisOptionName ] = _this[ thisOptionName ];
-							optionsThatWereChanged[ thisOptionName ] = options[ thisOptionName ];
+						var oldValue = _this[ thisOptionName ];
+						var newValue = options[ thisOptionName ];
+						// if this option already exists on the view, and the new value is different,
+						// make a note that we will be changing it
+						if( ! _.isUndefined( oldValue ) && oldValue !== newValue ) {
+							optionsThatWereChangedPreviousValues[ thisOptionName ] = oldValue;
+							optionsThatWereChanged[ thisOptionName ] = newValue;
 						}
-						_this[ thisOptionName ] = options[ thisOptionName ];
+						_this[ thisOptionName ] = newValue;
 						// note we do NOT delete the option off the options object here so that
 						// multiple views can be passed the same options object without issue.
 					}

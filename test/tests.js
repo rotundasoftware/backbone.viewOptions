@@ -233,5 +233,35 @@ $( document ).ready( function() {
 			viewOptionsInstance = new MyViewOptionsClass( { "year" : "2013" } );
 			viewOptionsInstance.setOptions( { "year" : "2014" } );
 		} 
-	); 
+	);
+
+	test( "doesn't list unchanged options in view.onOptionsChanged",
+		1,
+		function() {
+			var MyViewOptionsClass = TestView.extend( {
+				options : [ "year", "month" ],
+				onOptionsChanged : function( changedOptions ) {
+					equal( changedOptions[ "year" ], undefined, "Unchanged option not listed" );
+				},
+			} );
+
+			viewOptionsInstance = new MyViewOptionsClass( { "year" : "2013", "month" : "1" } );
+			viewOptionsInstance.setOptions( { "month" : "2" } );
+		} 
+	);
+
+	test( "doesn't list options in view.onOptionsChanged that weren't previously set",
+		1,
+		function() {
+			var MyViewOptionsClass = TestView.extend( {
+				options : [ "year", "month" ],
+				onOptionsChanged : function( changedOptions ) {
+					equal( changedOptions[ "month" ], undefined, "Previously not set option not listed" );
+				},
+			} );
+
+			viewOptionsInstance = new MyViewOptionsClass( { "year" : "2014" } );
+			viewOptionsInstance.setOptions( { "year" : "2015", "month" : "2" } );
+		} 
+	);
 } );
