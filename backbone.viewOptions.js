@@ -5,7 +5,18 @@
  * http://github.com/rotundasoftware/backbone.viewOptions
 */
 
-( function( Backbone ) {
+( function( root, factory ) {
+	if ( typeof define === 'function' && define.amd ) {
+		// AMD
+		define([ 'underscore', 'backbone' ], factory );
+	} else if (typeof exports === 'object') {
+		// Node
+		module.exports = factory( require( 'underscore' ), require( 'backbone' ) );
+	} else {
+		// Browser globals
+		root.returnExports = factory( root._, root.Backbone );
+	}
+} ( this, function( _, Backbone ) {
 	Backbone.ViewOptions = {};
 
 	Backbone.ViewOptions.add = function( view, optionsDeclarationsProperty ) {
@@ -113,4 +124,7 @@
 
 		return normalizedOptionDeclarations;
 	}
-} )( Backbone, _ );
+
+	return Backbone.ViewOptions;
+
+} ) );

@@ -1,0 +1,32 @@
+{
+  "name": "backbone-view-options",
+  "version": "0.2.1",
+  "description": "A mini Backbone.js plugin to declare and get/set options on views.",
+  "main": "backbone.viewOptions.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rotundasoftware/backbone.viewOptions.git"
+  },
+  "keywords": [
+    "backbone",
+    "views",
+    "view",
+    "options"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rotundasoftware/backbone.viewOptions/issues"
+  },
+  "homepage": "https://github.com/rotundasoftware/backbone.viewOptions",
+  "dependencies": {
+    "backbone": "~1.1.2",
+    "underscore": "~1.6.0"
+  }
+}
