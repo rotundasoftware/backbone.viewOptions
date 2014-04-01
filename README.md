@@ -31,7 +31,7 @@ myButtonView = new ButtonView( { "label" : "OK" } );
 
 // Another example showing default values and required options.
 WidgetView = Backbone.View.extend( {
-	initOptions : [
+	options : [
 		{ "label" : "OK" },  // Use this object syntax to give an option a default value.
 		"type!"  // Use a trailing exclamation mark to indicate that an option is required.
 	],
