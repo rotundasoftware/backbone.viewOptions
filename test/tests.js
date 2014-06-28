@@ -181,6 +181,20 @@ $( document ).ready( function() {
 		} 
 	);
 
+	// Test creation of a viewOptions object without the provided required
+	// option value.  In this case we expect that an exception be thrown.
+	test( "with a required option already present.",
+		0,
+		function() {
+			var MyViewOptionsClass = TestView.extend( {
+				options : [ "name!", "optional" ]
+			} );
+	
+			viewOptionsInstance = new MyViewOptionsClass( { "name" : "myName" } );
+			viewOptionsInstance.setOptions( { "optional" : "yes" } ); // should not throw an exception
+		}
+	);
+
 	// Once a viewOption has been created, it's values can be modified, so
 	// we need a new module to reflect tests that update viewOptions.
 	module( "viewOptions value modification.", {} );
@@ -194,7 +208,7 @@ $( document ).ready( function() {
 			var MyViewOptionsClass = TestView.extend( {
 				options : [ "name!" ]
 			} );
-	      
+	      	
 			viewOptionsInstance = new MyViewOptionsClass( { "name" : "Cassius Clay" } );
 			equal( viewOptionsInstance.name, "Cassius Clay", "Initial required 'name' value set to expected value 'Cassius Clay'." );
 

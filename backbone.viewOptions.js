@@ -1,5 +1,5 @@
 /*
- * Backbone.ViewOptions, v0.2
+ * Backbone.ViewOptions, v0.2.3
  * Copyright (c)2014 Rotunda Software, LLC.
  * Distributed under MIT license
  * http://github.com/rotundasoftware/backbone.viewOptions
@@ -41,10 +41,12 @@
 					if( thisOptionRequired ) {
 						// note we do not throw an error if a required option is not supplied, but it is  
 						// found on the object itself (due to a prior call of view.setOptions, most likely)
-						if( ! options ||
-							( ( ! _.contains( _.keys( options ), thisOptionName ) && _.isUndefined( _this[ thisOptionName ] ) ) ) ||
-							_.isUndefined( options[ thisOptionName ] ) )
+
+						if( ( ! options || ! _.contains( _.keys( options ), thisOptionName ) ) && _.isUndefined( _this[ thisOptionName ] ) )
 							throw new Error( "Required option \"" + thisOptionName + "\" was not supplied." );
+
+						if( options && _.contains( _.keys( options ), thisOptionName ) && _.isUndefined( options[ thisOptionName ] ) )
+							throw new Error( "Required option \"" + thisOptionName + "\" can not be set to undefined." );
 					}
 
 					// attach the supplied value of this option, or the appropriate default value, to the view object
