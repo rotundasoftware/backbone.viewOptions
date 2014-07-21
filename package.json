@@ -1,6 +1,6 @@
 {
   "name": "backbone-view-options",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A mini Backbone.js plugin to declare and get/set options on views.",
   "main": "backbone.viewOptions.js",
   "directories": {
