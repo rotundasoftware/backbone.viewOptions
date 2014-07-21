@@ -80,7 +80,7 @@
 
 		view.getOptions = function() {
 			var optionDeclarations = _.result( this, optionsDeclarationsProperty );
-			if( _.isUndefined( optionDeclarations ) ) return [];
+			if( _.isUndefined( optionDeclarations ) ) return {};
 			
 			var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
 			var optionsNames = _.keys( normalizedOptionDeclarations );
