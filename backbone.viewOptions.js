@@ -1,5 +1,5 @@
 /*
- * Backbone.ViewOptions, v0.2.3
+ * Backbone.ViewOptions, v0.2
  * Copyright (c)2014 Rotunda Software, LLC.
  * Distributed under MIT license
  * http://github.com/rotundasoftware/backbone.viewOptions
@@ -35,8 +35,8 @@
 				var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
 
 				_.each( normalizedOptionDeclarations, function( thisOptionProperties, thisOptionName ) {
-					thisOptionRequired = thisOptionProperties.required;
-					thisOptionDefaultValue = thisOptionProperties.defaultValue;
+					var thisOptionRequired = thisOptionProperties.required;
+					var thisOptionDefaultValue = thisOptionProperties.defaultValue;
 
 					if( thisOptionRequired ) {
 						// note we do not throw an error if a required option is not supplied, but it is  
@@ -63,7 +63,7 @@
 						// note we do NOT delete the option off the options object here so that
 						// multiple views can be passed the same options object without issue.
 					}
-					else if( ! _.isUndefined( thisOptionDefaultValue ) && _.isUndefined( _this[ thisOptionName ] ) ) {
+					else if( _.isUndefined( _this[ thisOptionName ] ) ) {
 						// note defaults do not write over any existing properties on the view itself.
 						_this[ thisOptionName ] = thisOptionDefaultValue;
 					}
