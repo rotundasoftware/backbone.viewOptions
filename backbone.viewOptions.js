@@ -22,7 +22,7 @@
 	Backbone.ViewOptions.add = function( view, optionsDeclarationsProperty ) {
 		if( _.isUndefined( optionsDeclarationsProperty ) ) optionsDeclarationsProperty = "options";
 
-		// ****************** Public methods added to view ****************** 
+		// ****************** Public methods added to view ******************
 
 		view.setOptions = function( options ) {
 			var _this = this;
@@ -39,7 +39,7 @@
 					var thisOptionDefaultValue = thisOptionProperties.defaultValue;
 
 					if( thisOptionRequired ) {
-						// note we do not throw an error if a required option is not supplied, but it is  
+						// note we do not throw an error if a required option is not supplied, but it is
 						// found on the object itself (due to a prior call of view.setOptions, most likely)
 
 						if( ( ! options || ! _.contains( _.keys( options ), thisOptionName ) ) && _.isUndefined( _this[ thisOptionName ] ) )
@@ -69,7 +69,7 @@
 					}
 				} );
 			}
-			
+
 			if( _.keys( optionsThatWereChanged ).length > 0 ) {
 				if( _.isFunction( _this.onOptionsChanged ) )
 					_this.onOptionsChanged( optionsThatWereChanged, optionsThatWereChangedPreviousValues );
@@ -81,20 +81,20 @@
 		view.getOptions = function() {
 			var optionDeclarations = _.result( this, optionsDeclarationsProperty );
 			if( _.isUndefined( optionDeclarations ) ) return {};
-			
+
 			var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
 			var optionsNames = _.keys( normalizedOptionDeclarations );
-			
+
 			return _.pick( this, optionsNames );
 		};
 	};
 
-	// ****************** Private Utility Functions ****************** 
+	// ****************** Private Utility Functions ******************
 
 	function _normalizeOptionDeclarations( optionDeclarations ) {
 		// convert our short-hand option syntax (with exclamation marks, etc.)
 		// to a simple array of standard option declaration objects.
-		
+
 		var normalizedOptionDeclarations = {};
 
 		if( ! _.isArray( optionDeclarations ) ) throw new Error( "Option declarations must be an array." );
@@ -109,7 +109,10 @@
 				thisOptionName = thisOptionDeclaration;
 			else if( _.isObject( thisOptionDeclaration ) ) {
 				thisOptionName = _.first( _.keys( thisOptionDeclaration ) );
-				thisOptionDefaultValue = _.clone( thisOptionDeclaration[ thisOptionName ] );
+				if ( _.isFunction( thisOptionDeclaration[ thisOptionName ] ) )
+					thisOptionDefaultValue = thisOptionDeclaration[ thisOptionName ];
+				else
+					thisOptionDefaultValue = _.clone( thisOptionDeclaration[ thisOptionName ] );
 			}
 			else throw new Error( "Each element in the option declarations array must be either a string or an object." );
 
