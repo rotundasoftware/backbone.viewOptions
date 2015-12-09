@@ -109,7 +109,7 @@
 				thisOptionName = thisOptionDeclaration;
 			else if( _.isObject( thisOptionDeclaration ) ) {
 				thisOptionName = _.first( _.keys( thisOptionDeclaration ) );
-				if ( _.isFunction( thisOptionDeclaration[ thisOptionName ] ) )
+				if( _.isFunction( thisOptionDeclaration[ thisOptionName ] ) )
 					thisOptionDefaultValue = thisOptionDeclaration[ thisOptionName ];
 				else
 					thisOptionDefaultValue = _.clone( thisOptionDeclaration[ thisOptionName ] );
@@ -121,10 +121,9 @@
 				thisOptionName = thisOptionName.slice( 0, thisOptionName.length - 1 );
 			}
 
-			normalizedOptionDeclarations[ thisOptionName ] = {
-				required : thisOptionRequired,
-				defaultValue : thisOptionDefaultValue
-			};
+			normalizedOptionDeclarations[ thisOptionName ] = normalizedOptionDeclarations[ thisOptionName ] || {};
+			normalizedOptionDeclarations[ thisOptionName ].required = thisOptionRequired;
+			if( ! _.isUndefined( thisOptionDefaultValue ) ) normalizedOptionDeclarations[ thisOptionName ].defaultValue = thisOptionDefaultValue;
 		} );
 
 		return normalizedOptionDeclarations;
