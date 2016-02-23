@@ -50,7 +50,7 @@
 					}
 
 					// attach the supplied value of this option, or the appropriate default value, to the view object
-					if( options && thisOptionName in options ) {
+					if( options && thisOptionName in options && ! _.isUndefined( options[ thisOptionName ] ) ) {
 						var oldValue = _this[ thisOptionName ];
 						var newValue = options[ thisOptionName ];
 						// if this option already exists on the view, and the new value is different,
