@@ -31,6 +31,11 @@
 
 			var optionDeclarations = _.result( this, optionsDeclarationsProperty );
 
+			if( _.isString( options ) ) {
+				options = {};
+				options[ arguments[ 0 ] ] = arguments[ 1 ];
+			}
+
 			if( ! _.isUndefined( optionDeclarations ) ) {
 				var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
 
@@ -78,13 +83,16 @@
 			}
 		};
 
-		view.getOptions = function() {
+		view.getOptions = function( whichOptions ) {
 			var optionDeclarations = _.result( this, optionsDeclarationsProperty );
 			if( _.isUndefined( optionDeclarations ) ) return {};
 
 			var normalizedOptionDeclarations = _normalizeOptionDeclarations( optionDeclarations );
 			var optionsNames = _.keys( normalizedOptionDeclarations );
 
+			if( _.isUndefined( whichOptions ) ) whichOptions = optionsNames;
+			else if( _.isString( whichOptions ) ) whichOptions = [ whichOptions ];
+			
 			return _.pick( this, optionsNames );
 		};
 	};
