@@ -32,8 +32,9 @@
 			var optionDeclarations = _.result( this, optionsDeclarationsProperty );
 
 			if( _.isString( options ) ) {
-				options = {};
-				options[ arguments[ 0 ] ] = arguments[ 1 ];
+				var optionsAsObject = {};
+				optionsAsObject[ arguments[ 0 ] ] = arguments[ 1 ];
+				options = optionsAsObject;
 			}
 
 			if( ! _.isUndefined( optionDeclarations ) ) {
@@ -92,7 +93,7 @@
 
 			if( _.isUndefined( whichOptions ) ) whichOptions = optionsNames;
 			else if( _.isString( whichOptions ) ) whichOptions = [ whichOptions ];
-			
+
 			return _.pick( this, optionsNames );
 		};
 	};
