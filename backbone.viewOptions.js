@@ -118,7 +118,7 @@
 				thisOptionName = thisOptionDeclaration;
 			else if( _.isObject( thisOptionDeclaration ) ) {
 				thisOptionName = _.first( _.keys( thisOptionDeclaration ) );
-				if( _.isFunction( thisOptionDeclaration[ thisOptionName ] ) )
+				if( _.isFunction( thisOptionDeclaration[ thisOptionName ] ) || _.isRegExp( thisOptionDeclaration[ thisOptionName ] ) )
 					thisOptionDefaultValue = thisOptionDeclaration[ thisOptionName ];
 				else
 					thisOptionDefaultValue = _.clone( thisOptionDeclaration[ thisOptionName ] );
