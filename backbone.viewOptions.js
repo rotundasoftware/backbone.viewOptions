@@ -71,7 +71,7 @@
 					}
 					else if( _.isUndefined( _this[ thisOptionName ] ) ) {
 						// note defaults do not write over any existing properties on the view itself.
-						_this[ thisOptionName ] = _.isFunction( thisOptionDefaultValue ) ? thisOptionDefaultValue.call( view ) : thisOptionDefaultValue;
+						_this[ thisOptionName ] = thisOptionDefaultValue;
 					}
 				} );
 			}
